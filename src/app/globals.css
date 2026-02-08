@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors - Drew Nagda */
+  --color-neon: #C8FF00;
+  --color-neon-soft: #E8FFB3;
+  --color-true-black: #000000;
+  --color-soft-black: #0C0C0C;
+  --color-dark-surface: #141414;
+  --color-warm-charcoal: #1C1C1C;
+  --color-stone: #2A2A28;
+  --color-warm-gray: #6B6B63;
+  --color-mid-gray: #9C9C94;
+  --color-light-stone: #C8C5BD;
+  --color-parchment: #E8E4DC;
+  --color-raw-white: #F5F2EC;
+
+  /* Fonts */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-stone);
+  background-color: var(--color-raw-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-neon);
+  color: var(--color-true-black);
+}
+
+/* Scroll animation base */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for children */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
