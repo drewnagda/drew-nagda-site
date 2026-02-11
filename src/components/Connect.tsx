@@ -5,19 +5,13 @@ const connectLinks = [
     label: "youtube",
     handle: "@drewnagda",
     href: "https://youtube.com/@drewnagda",
-    description: "raw content on building, health, and discipline",
+    description: "raw content on building, real estate, and discipline",
   },
   {
     label: "twitter / x",
     handle: "@drewnagda",
     href: "https://twitter.com/drewnagda",
     description: "daily insights and building in public",
-  },
-  {
-    label: "instagram",
-    handle: "@drewnagda",
-    href: "https://instagram.com/drewnagda",
-    description: "behind the scenes — business, family, fitness",
   },
   {
     label: "linkedin",
@@ -42,9 +36,10 @@ export default function Connect() {
                 let&apos;s connect
               </h2>
               <p className="mt-6 font-body text-lg text-warm-gray leading-relaxed max-w-md">
-                have a business idea, startup pitch, or just want to talk shop?
-                i&apos;m always open to connecting with builders, creators, and
-                anyone working on something meaningful.
+                interested in business or brand opportunities? have a deal,
+                partnership, or collaboration in mind? i&apos;m always open to
+                connecting with builders, creators, and anyone working on
+                something meaningful.
               </p>
             </ScrollReveal>
 
@@ -87,8 +82,8 @@ export default function Connect() {
 
             <ScrollReveal delay={0.3}>
               <p className="mt-8 font-body text-sm text-mid-gray">
-                for business inquiries, startup pitches, speaking engagements,
-                or collaboration opportunities.
+                for business inquiries, brand partnerships, speaking
+                engagements, or collaboration opportunities.
               </p>
             </ScrollReveal>
           </div>

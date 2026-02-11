@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
@@ -34,7 +35,7 @@ export default function Hero() {
               }`}
             >
               <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-neon bg-true-black px-3 py-1.5 inline-block">
-                entrepreneur &middot; builder &middot; father
+                family &middot; entrepreneur &middot; father
               </span>
             </div>
 
@@ -46,23 +47,31 @@ export default function Hero() {
                   : "opacity-0 translate-y-6"
               }`}
             >
-              build.
+              Drew
               <br />
-              compound.
-              <br />
-              <span className="text-neon">repeat.</span>
+              <span className="text-neon-dark">Nagda</span>
             </h1>
 
-            {/* Subline */}
+            {/* Motto */}
             <p
-              className={`mt-8 font-body text-lg md:text-xl text-warm-gray max-w-md leading-relaxed transition-all duration-700 delay-600 ${
+              className={`mt-6 font-heading text-lg md:text-xl italic text-warm-gray tracking-wide transition-all duration-700 delay-500 ${
                 loaded
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
               }`}
             >
-              entrepreneurship, health, and family aren&apos;t trade-offs.
-              they&apos;re multipliers.
+              todo es posible
+            </p>
+
+            {/* Subline */}
+            <p
+              className={`mt-6 font-body text-lg md:text-xl text-warm-gray max-w-md leading-relaxed transition-all duration-700 delay-600 ${
+                loaded
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+            >
+              community, family, and compounding &mdash; that&apos;s what it&apos;s all about.
             </p>
 
             {/* CTA */}
@@ -135,22 +144,17 @@ export default function Hero() {
             }`}
           >
             <div className="aspect-[3/4] bg-parchment border border-light-stone relative overflow-hidden">
-              {/* Placeholder content */}
-              <div className="absolute inset-0 flex items-end p-8">
-                <div>
-                  <div className="w-12 h-12 border-2 border-neon flex items-center justify-center mb-4">
-                    <span className="font-heading font-bold text-sm text-stone">
-                      dn
-                    </span>
-                  </div>
-                  <p className="font-heading text-[10px] font-semibold tracking-[0.2em] uppercase text-mid-gray">
-                    drew nagda
-                  </p>
-                  <p className="font-body text-xs text-light-stone mt-1">
-                    pasadena, california
-                  </p>
-                </div>
-              </div>
+              <Image
+                src="/family-hero.jpg"
+                alt="Drew, Thalia, and Ezra Nagda"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              {/* Subtle gradient overlay at bottom */}
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-true-black/30 to-transparent" />
 
               {/* Neon accent corner */}
               <div className="absolute top-0 right-0 w-16 h-[2px] bg-neon" />

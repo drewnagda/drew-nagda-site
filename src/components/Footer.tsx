@@ -9,8 +9,8 @@ const pillarLinks = [
 const socialLinks = [
   { label: "youtube", href: "https://youtube.com/@drewnagda" },
   { label: "twitter / x", href: "https://twitter.com/drewnagda" },
-  { label: "instagram", href: "https://instagram.com/drewnagda" },
   { label: "linkedin", href: "https://linkedin.com/in/drewnagda" },
+  { label: "blog", href: "/blog" },
 ];
 
 export default function Footer() {

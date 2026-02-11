@@ -19,27 +19,30 @@ export default function About() {
           <div className="lg:col-span-3">
             <ScrollReveal delay={0.1}>
               <p className="font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                drew nagda is a builder. across real estate, health technology,
-                and community leadership, he operates with one philosophy:
-                discipline compounds. every venture, every workout, every
-                relationship is a construction project — built with intention,
-                measured with data, and sustained with consistency.
+                drew nagda is a builder. he spent a decade in the technology
+                space, most notably as an early team member at SinglePlatform
+                (acquired for $100M) and Rap Genius (now Genius) — which became
+                the largest lyrics website on the internet and a cultural
+                phenomenon. that chapter taught him how startups scale, how
+                communities form, and how relentless execution turns ideas into
+                institutions.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                based in pasadena, california, drew leads multiple businesses
-                while prioritizing family with his son ezra and wife thalia.
-                his approach rejects the myth that you have to choose between
-                ambition and presence. you can build an empire and be home for
-                dinner.
+                in 2016, drew and his wife thalia moved to the inland empire,
+                california and bet on real estate. over the past 10 years and
+                counting, they&apos;ve grown their team and built a portfolio of
+                single-family and multifamily properties — brick by brick,
+                deal by deal. they became deeply involved in their community,
+                giving back through youth sports and local leadership.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                through recovery work, mentorship, and community investment in
-                the san gabriel valley, drew proves that real success is
-                measured by who you bring with you.
+                now based in pasadena with their son ezra, drew and thalia
+                continue to build — in business, in community, and as a family.
+                for drew, it&apos;s all about community, family, and compounding.
               </p>
             </ScrollReveal>
           </div>
@@ -48,17 +51,18 @@ export default function About() {
           <div className="lg:col-span-2">
             <ScrollReveal delay={0.2}>
               <div className="bg-parchment border border-light-stone p-8 md:p-10">
-                <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon mb-8">
+                <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-dark mb-8">
                   at a glance
                 </p>
 
                 <div className="space-y-6">
                   {[
                     { label: "location", value: "pasadena, ca" },
-                    { label: "focus", value: "real estate, health, tech" },
-                    { label: "philosophy", value: "discipline compounds" },
+                    { label: "background", value: "tech → real estate" },
+                    { label: "notable", value: "SinglePlatform, Genius" },
+                    { label: "focus", value: "real estate & community" },
+                    { label: "philosophy", value: "todo es posible" },
                     { label: "family", value: "ezra & thalia" },
-                    { label: "community", value: "san gabriel valley" },
                   ].map((item) => (
                     <div
                       key={item.label}

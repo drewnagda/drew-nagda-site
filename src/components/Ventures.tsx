@@ -5,19 +5,10 @@ const ventures = [
     name: "nagda homes",
     category: "real estate & investments",
     description:
-      "full-service real estate operation spanning property management, sales, and mortgage origination. building generational wealth through strategic property investment in southern california.",
+      "full-service real estate operation spanning property management, sales, and strategic investing. building generational wealth through single-family and multifamily properties in southern california.",
     role: "founder & principal",
-    tags: ["property management", "sales", "mortgages", "investing"],
-    accent: "bg-neon",
-  },
-  {
-    name: "juvenate peptides",
-    category: "health & longevity",
-    description:
-      "research peptide company at the intersection of science and optimization. clinical precision meets premium quality for the health-conscious builder who treats their body like their most important business.",
-    role: "co-founder",
-    tags: ["peptides", "research", "health optimization", "longevity"],
-    accent: "bg-[#00B5A0]",
+    tags: ["property management", "sales", "multifamily", "investing"],
+    accent: "bg-neon-dark",
   },
   {
     name: "youtube",
@@ -33,7 +24,7 @@ const ventures = [
     name: "twitter / x",
     category: "community & thought leadership",
     description:
-      "daily insights on business building, health optimization, and the compound effect of discipline. join the conversation with builders who share the same philosophy.",
+      "daily insights on business building and the compound effect of discipline. join the conversation with builders who share the same philosophy.",
     role: "builder in public",
     tags: ["business", "community", "daily insights"],
     accent: "bg-stone",
