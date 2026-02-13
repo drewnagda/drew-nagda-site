@@ -33,10 +33,10 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Pillars */}
+          {/* Ventures */}
           <div>
             <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon mb-6">
-              pillars
+              ventures
             </p>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {pillarLinks.map((p) => (
