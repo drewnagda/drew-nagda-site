@@ -36,10 +36,9 @@ export default function Connect() {
                 let&apos;s connect
               </h2>
               <p className="mt-6 font-body text-lg text-warm-gray leading-relaxed max-w-md">
-                interested in business or brand opportunities? have a deal,
-                partnership, or collaboration in mind? i&apos;m always open to
-                connecting with builders, creators, and anyone working on
-                something meaningful.
+                I work with brands, creators, and builders on projects that
+                matter. Have a deal, partnership, or collaboration in mind?
+                Reach out&mdash;I&apos;d love to hear about it.
               </p>
             </ScrollReveal>
 
