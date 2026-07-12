@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.drewnagda.com"),
   title: {
-    default: "Drew Nagda — todo es posible",
-    template: "%s — Drew Nagda",
+    default: "Drew Nagda · todo es posible",
+    template: "%s · Drew Nagda",
   },
   description:
     "Drew Nagda is a real estate investor, entrepreneur, and angel investor in Pasadena, CA. Founder of Nagda Homes, early team at SinglePlatform and Genius.",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.drewnagda.com",
     siteName: "Drew Nagda",
-    title: "Drew Nagda — todo es posible",
+    title: "Drew Nagda · todo es posible",
     description:
       "Real estate investor, entrepreneur, and angel investor. Founder of Nagda Homes, early team at SinglePlatform and Genius.",
     locale: "en_US",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@nagda",
     creator: "@nagda",
-    title: "Drew Nagda — todo es posible",
+    title: "Drew Nagda · todo es posible",
     description:
       "Real estate investor, entrepreneur, and angel investor. Founder of Nagda Homes.",
   },

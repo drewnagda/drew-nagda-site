@@ -3,7 +3,7 @@ import Link from "next/link";
 const posts = [
   {
     slug: "why-i-moved-to-the-inland-empire",
-    title: "why i moved to the inland empire — and what it taught me about building",
+    title: "why i moved to the inland empire, and what it taught me about building",
     excerpt:
       "in 2016, thalia and i packed up our nyc life and headed to southern california. everyone thought we were crazy. here's what happened next.",
     date: "2026-02-10",
@@ -15,7 +15,7 @@ const posts = [
     slug: "compound-effect-of-discipline",
     title: "the compound effect of discipline",
     excerpt:
-      "business, fitness, family, investments — they all follow the same law. small daily deposits turn into something nobody can compete with.",
+      "business, fitness, family, investments: they all follow the same law. small daily deposits turn into something nobody can compete with.",
     date: "2026-02-03",
     category: "mindset",
     readTime: "4 min read",
@@ -25,7 +25,7 @@ const posts = [
     slug: "building-in-public",
     title: "building in public: why transparency wins",
     excerpt:
-      "sharing the messy middle — not just the highlight reel. here's why i document the process and what it's done for my business and community.",
+      "sharing the messy middle, not just the highlight reel. here's why i document the process and what it's done for my business and community.",
     date: "2026-01-27",
     category: "business",
     readTime: "5 min read",
@@ -174,7 +174,7 @@ export default function BlogPage() {
           <p className="font-body text-sm text-mid-gray">
             more posts coming soon. follow along on{" "}
             <a
-              href="https://twitter.com/drewnagda"
+              href="https://x.com/nagda"
               target="_blank"
               rel="noopener noreferrer"
               className="text-stone hover:text-neon-dark transition-colors underline underline-offset-2"

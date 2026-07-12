@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -18,7 +18,7 @@
   --color-raw-white: #F5F2EC;
 
   /* Fonts */
-  --font-heading: 'Montserrat', sans-serif;
+  --font-heading: 'Archivo', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
 }
 
@@ -52,6 +52,18 @@ body {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.3333%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Stagger delays for children */

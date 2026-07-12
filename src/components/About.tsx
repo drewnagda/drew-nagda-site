@@ -5,8 +5,9 @@ export default function About() {
     <section id="about" className="bg-raw-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <ScrollReveal>
-          <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-neon bg-true-black px-3 py-1.5 inline-block">
-            SECTION 01
+          <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
+            <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+            01 / about
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             about drew
@@ -17,12 +18,12 @@ export default function About() {
           <div className="lg:col-span-3">
             <ScrollReveal delay={0.1}>
               <p className="font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                I&apos;m Drew Nagda — husband, father, builder, connector.
+                I&apos;m Drew Nagda: husband, father, builder, connector.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                I spent a decade in tech — first as an early team member at
+                I spent a decade in tech, first as an early team member at
                 SinglePlatform (acquired for $100M), Lean Startup Machine, and
                 then at Rap Genius (now Genius), which grew into the largest
                 lyrics site on the internet. Those years taught me how to scale
@@ -32,10 +33,12 @@ export default function About() {
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                In 2016, my wife Thalia and I moved to the Inland Empire,
-                California and went all-in on real estate. Over the past ten
-                years, we&apos;ve built a portfolio of single-family and
-                multifamily properties, grown our team, and put down real roots.
+                In 2016, Thalia and I moved west and started real estate from
+                zero, literally from her dad&apos;s spare bedroom in the
+                Inland Empire. Since then we&apos;ve bought and repositioned
+                300+ distressed properties across Southern California and
+                built the entire machine in-house: direct-to-seller
+                acquisition, construction, design, sales, and leasing.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.25}>
@@ -62,6 +65,7 @@ export default function About() {
                     { label: "location", value: "pasadena, ca" },
                     { label: "background", value: "tech \u2192 real estate" },
                     { label: "notable", value: "SinglePlatform, Genius" },
+                    { label: "track record", value: "300+ distressed properties" },
                     { label: "focus", value: "real estate & community" },
                     { label: "philosophy", value: "todo es posible" },
                     { label: "family", value: "ezra & thalia" },

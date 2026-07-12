@@ -34,7 +34,7 @@ export default function Header() {
           className={`flex items-center justify-center w-10 h-10 border-2 font-heading font-bold text-sm tracking-tight transition-colors duration-300 ${
             scrolled
               ? "border-stone text-stone hover:border-neon"
-              : "border-stone text-stone hover:border-neon"
+              : "border-raw-white text-raw-white hover:border-neon"
           }`}
         >
           dn
@@ -46,7 +46,11 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-heading text-sm font-medium text-warm-gray hover:text-stone transition-colors duration-300 relative group"
+              className={`font-heading text-sm font-medium transition-colors duration-300 relative group ${
+                scrolled
+                  ? "text-warm-gray hover:text-stone"
+                  : "text-mid-gray hover:text-raw-white"
+              }`}
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
@@ -61,17 +65,17 @@ export default function Header() {
           aria-label="Toggle menu"
         >
           <span
-            className={`block w-5 h-[1.5px] bg-stone transition-transform duration-300 ${
+            className={`block w-5 h-[1.5px] bg-mid-gray transition-transform duration-300 ${
               menuOpen ? "rotate-45 translate-y-[4.5px]" : ""
             }`}
           />
           <span
-            className={`block w-5 h-[1.5px] bg-stone transition-opacity duration-300 ${
+            className={`block w-5 h-[1.5px] bg-mid-gray transition-opacity duration-300 ${
               menuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-5 h-[1.5px] bg-stone transition-transform duration-300 ${
+            className={`block w-5 h-[1.5px] bg-mid-gray transition-transform duration-300 ${
               menuOpen ? "-rotate-45 -translate-y-[4.5px]" : ""
             }`}
           />

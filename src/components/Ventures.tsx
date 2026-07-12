@@ -5,10 +5,20 @@ const ventures = [
     name: "nagda homes",
     category: "real estate & investments",
     description:
-      "full-service real estate operation spanning property management, sales, and strategic investing. building generational wealth through single-family and multifamily properties in southern california.",
+      "vertically integrated real estate operation: direct-to-seller acquisition, in-house construction, design, sales, and leasing. 300+ distressed properties bought and repositioned across southern california.",
     role: "founder & principal",
-    tags: ["property management", "sales", "multifamily", "investing"],
+    tags: ["acquisition", "construction", "design", "sales", "leasing"],
     accent: "bg-neon-dark",
+  },
+  {
+    name: "world cup eats",
+    category: "content & media",
+    description:
+      "eating the 2026 world cup one country at a time, across los angeles. a father-son food show with my son ezra. interactive map, episodes, and the full bracket.",
+    role: "co-host, with ezra",
+    tags: ["world cup 2026", "la food map", "father & son"],
+    accent: "bg-neon",
+    link: "https://worldcupeats.com",
   },
   {
     name: "youtube",
@@ -30,16 +40,6 @@ const ventures = [
     accent: "bg-stone",
     link: "https://x.com/nagda",
   },
-  {
-    name: "angel investor",
-    category: "investments",
-    description:
-      "investing in AI, Real Estate, and Consumer Products. Reach out if you want to pitch your company.",
-    role: "investor",
-    tags: ["AI", "real estate", "consumer products"],
-    accent: "bg-neon",
-    link: "mailto:drew@drewnagda.com",
-  },
 ];
 
 export default function Ventures() {
@@ -48,16 +48,16 @@ export default function Ventures() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Section label */}
         <ScrollReveal>
-          <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-neon bg-true-black px-3 py-1.5 inline-block">
-            SECTION 03
+          <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
+            <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+            05 / ventures
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             ventures & platforms
           </h2>
           <p className="mt-4 font-body text-lg text-warm-gray max-w-xl">
-            one builder, multiple brands. each venture traces back to the same
-            philosophy — build with discipline, measure with data, compound over
-            time.
+            everything runs on the same playbook: buy right, build in-house,
+            compound. some of it makes money. some of it makes memories.
           </p>
         </ScrollReveal>
 
