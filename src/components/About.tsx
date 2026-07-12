@@ -7,7 +7,7 @@ export default function About() {
         <ScrollReveal>
           <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
             <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-            01 &mdash; about
+            01 / about
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             about drew
@@ -18,12 +18,12 @@ export default function About() {
           <div className="lg:col-span-3">
             <ScrollReveal delay={0.1}>
               <p className="font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                I&apos;m Drew Nagda — husband, father, builder, connector.
+                I&apos;m Drew Nagda: husband, father, builder, connector.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                I spent a decade in tech — first as an early team member at
+                I spent a decade in tech, first as an early team member at
                 SinglePlatform (acquired for $100M), Lean Startup Machine, and
                 then at Rap Genius (now Genius), which grew into the largest
                 lyrics site on the internet. Those years taught me how to scale
@@ -34,7 +34,7 @@ export default function About() {
             <ScrollReveal delay={0.2}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
                 In 2016, Thalia and I moved west and started real estate from
-                zero — literally from her dad&apos;s spare bedroom in the
+                zero, literally from her dad&apos;s spare bedroom in the
                 Inland Empire. Since then we&apos;ve bought and repositioned
                 300+ distressed properties across Southern California and
                 built the entire machine in-house: direct-to-seller

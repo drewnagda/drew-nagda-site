@@ -18,7 +18,7 @@ const stops = [
     years: "2006–2010",
     title: "first company",
     story:
-      "business management at indiana university — and a tutoring company started on campus. first taste of building something people pay for.",
+      "business management at indiana university, and a tutoring company started on campus. first taste of building something people pay for.",
   },
   {
     city: "manhattan",
@@ -26,7 +26,7 @@ const stops = [
     years: "2010–2015",
     title: "the startup wave",
     story:
-      "five years inside nyc tech at full speed — singleplatform through a $100m acquisition, lean startup machine, rap genius as it became the internet's home for lyrics.",
+      "five years inside nyc tech at full speed: singleplatform through a $100m acquisition, lean startup machine, rap genius as it became the internet's home for lyrics.",
   },
   {
     city: "brooklyn",
@@ -40,9 +40,9 @@ const stops = [
     city: "upland",
     state: "ca",
     years: "2016–2023",
-    title: "all in — for the girl",
+    title: "all in for the girl",
     story:
-      "thalia's family is from the inland empire, so that's where we landed — her dad's spare bedroom, learning real estate from zero. seven years later: 300+ distressed properties and a vertically integrated company.",
+      "thalia's family is from the inland empire, so that's where we landed: her dad's spare bedroom, learning real estate from zero. seven years later: 300+ distressed properties and a vertically integrated company.",
   },
   {
     city: "pasadena",
@@ -64,13 +64,13 @@ export default function Journey() {
         <ScrollReveal>
           <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
             <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-            03 &mdash; the journey
+            03 / the journey
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             the journey
           </h2>
           <p className="mt-4 font-body text-lg text-warm-gray max-w-xl">
-            six stops, ocala to pasadena — the long way. tap a pin.
+            six stops, ocala to pasadena, the long way. tap a pin.
           </p>
         </ScrollReveal>
 

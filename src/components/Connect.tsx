@@ -31,7 +31,7 @@ export default function Connect() {
             <ScrollReveal>
               <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
                 <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-                06 &mdash; connect
+                07 / connect
               </span>
               <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
                 let&apos;s connect
@@ -39,7 +39,7 @@ export default function Connect() {
               <p className="mt-6 font-body text-lg text-warm-gray leading-relaxed max-w-md">
                 I work with brands, creators, and builders on projects that
                 matter. Have a deal, partnership, or collaboration in mind?
-                Reach out&mdash;I&apos;d love to hear about it.
+                Reach out. I&apos;d love to hear about it.
               </p>
             </ScrollReveal>
 

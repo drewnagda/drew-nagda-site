@@ -14,7 +14,7 @@ const ventures = [
     name: "world cup eats",
     category: "content & media",
     description:
-      "eating the 2026 world cup one country at a time, across los angeles — a father-son food show with my son ezra. interactive map, episodes, and the full bracket.",
+      "eating the 2026 world cup one country at a time, across los angeles. a father-son food show with my son ezra. interactive map, episodes, and the full bracket.",
     role: "co-host, with ezra",
     tags: ["world cup 2026", "la food map", "father & son"],
     accent: "bg-neon",
@@ -60,7 +60,7 @@ export default function Ventures() {
         <ScrollReveal>
           <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
             <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-            04 &mdash; ventures
+            05 / ventures
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             ventures & platforms

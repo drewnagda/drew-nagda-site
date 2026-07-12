@@ -1,5 +1,5 @@
 const items = [
-  "world cup eats — now filming across la",
+  "world cup eats: now filming across la",
   "eating the 2026 world cup, one country at a time",
   "a father-son show with ezra",
   "watch at worldcupeats.com",
@@ -12,7 +12,7 @@ export default function WorldCupStrip() {
       href="https://worldcupeats.com"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="world cup eats — watch at worldcupeats.com"
+      aria-label="world cup eats: watch at worldcupeats.com"
       className="block bg-neon overflow-hidden"
     >
       <div className="flex whitespace-nowrap animate-marquee py-3 w-max">

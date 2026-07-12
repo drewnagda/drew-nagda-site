@@ -8,31 +8,31 @@ const stages = [
     name: "acquisition",
     tagline: "direct to seller",
     detail:
-      "deals come from outreach, not listings. we go direct to owners of distressed properties — probate, tired landlords, houses nobody else wants — and close fast, as-is. 300+ closed this way.",
+      "deals come from outreach, not listings. we go direct to owners of distressed properties: probate, tired landlords, houses nobody else wants. we close fast, as-is. 300+ closed this way.",
   },
   {
     name: "construction",
     tagline: "in-house crews",
     detail:
-      "our own crews take a property down to the studs and back. no general-contractor markup, no waiting in someone else's queue — budgets and timelines we actually control.",
+      "our own crews take a property down to the studs and back. no general-contractor markup, no waiting in someone else's queue. budgets and timelines we actually control.",
   },
   {
     name: "design",
     tagline: "built for the block",
     detail:
-      "every property is designed for its neighborhood and its exit — finishes that rent or sell, budgeted to the dollar. distressed to desirable is a design problem as much as a construction one.",
+      "every property is designed for its neighborhood and its exit: finishes that rent or sell, budgeted to the dollar. distressed to desirable is a design problem as much as a construction one.",
   },
   {
     name: "sales",
     tagline: "our own brokerage",
     detail:
-      "we sell what we build. running sales in-house keeps the underwriting honest — we know what buyers actually pay because we're in the market every week.",
+      "we sell what we build. running sales in-house keeps the underwriting honest. we know what buyers actually pay because we're in the market every week.",
   },
   {
     name: "leasing",
     tagline: "operate what we keep",
     detail:
-      "property management under the same roof. the properties we hold, we manage — so we underwrite like operators, not speculators.",
+      "property management under the same roof. the properties we hold, we manage, so we underwrite like operators, not speculators.",
   },
 ];
 
@@ -46,14 +46,14 @@ export default function Machine() {
         <ScrollReveal>
           <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon">
             <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-            02 &mdash; the machine
+            02 / the machine
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-raw-white leading-tight">
             the machine
           </h2>
           <p className="mt-4 font-body text-lg text-mid-gray max-w-2xl">
             300+ distressed properties, one vertically integrated operation.
-            every stage of a deal happens in-house — which is why the math
+            every stage of a deal happens in-house. that's why the math
             works where others walk away. tap a stage.
           </p>
         </ScrollReveal>
@@ -109,20 +109,28 @@ export default function Machine() {
           <div className="mt-20">
             <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon">
               <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
-              proof &mdash; before &amp; after
+              proof / before &amp; after
             </span>
             <p className="mt-4 font-body text-lg text-mid-gray max-w-2xl">
-              the machine, on camera. real projects — bought distressed,
+              the machine, on camera. real projects: bought distressed,
               rebuilt in-house.
             </p>
-            <div className="mt-8 relative aspect-video border border-warm-charcoal bg-dark-surface">
+            <div className="mt-8 relative aspect-video border border-warm-charcoal bg-dark-surface overflow-hidden">
               <iframe
-                src="https://player.vimeo.com/video/1209317785?title=0&byline=0&portrait=0&dnt=1"
+                src="https://player.vimeo.com/video/1209317785?background=1&autoplay=1&loop=1&muted=1&dnt=1"
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
-                title="before and after — nagda homes projects"
+                title="before and after: nagda homes projects"
               />
+              <a
+                href="https://vimeo.com/1209317785"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-4 right-4 inline-flex items-center gap-2 px-4 py-2 bg-true-black/80 text-raw-white font-heading text-xs font-semibold tracking-wide hover:bg-neon hover:text-true-black transition-colors duration-300"
+              >
+                watch with sound
+              </a>
             </div>
           </div>
         </ScrollReveal>
