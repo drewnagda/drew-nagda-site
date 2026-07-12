@@ -32,10 +32,12 @@ export default function About() {
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                In 2016, my wife Thalia and I moved to the Inland Empire,
-                California and went all-in on real estate. Over the past ten
-                years, we&apos;ve built a portfolio of single-family and
-                multifamily properties, grown our team, and put down real roots.
+                In 2016, Thalia and I moved west and started real estate from
+                zero — literally from her dad&apos;s spare bedroom in the
+                Inland Empire. Since then we&apos;ve bought and repositioned
+                300+ distressed properties across Southern California and
+                built the entire machine in-house: direct-to-seller
+                acquisition, construction, design, sales, and leasing.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.25}>
@@ -62,6 +64,7 @@ export default function About() {
                     { label: "location", value: "pasadena, ca" },
                     { label: "background", value: "tech \u2192 real estate" },
                     { label: "notable", value: "SinglePlatform, Genius" },
+                    { label: "track record", value: "300+ distressed properties" },
                     { label: "focus", value: "real estate & community" },
                     { label: "philosophy", value: "todo es posible" },
                     { label: "family", value: "ezra & thalia" },
