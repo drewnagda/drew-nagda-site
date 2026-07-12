@@ -1,9 +1,8 @@
-const pillarLinks = [
-  "business",
-  "fitness",
-  "family",
-  "investments",
-  "community",
+const exploreLinks = [
+  { label: "about", href: "/#about" },
+  { label: "the machine", href: "/#machine" },
+  { label: "the journey", href: "/#journey" },
+  { label: "world cup eats", href: "https://worldcupeats.com" },
 ];
 
 const socialLinks = [
@@ -29,23 +28,24 @@ export default function Footer() {
               </span>
             </div>
             <p className="font-heading text-sm text-mid-gray tracking-wide">
-              build. compound. repeat.
+              family and loyalty over everything.
             </p>
           </div>
 
-          {/* Ventures */}
+          {/* Explore */}
           <div>
             <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon mb-6">
-              ventures
+              explore
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              {pillarLinks.map((p) => (
-                <span
-                  key={p}
-                  className="font-body text-sm text-mid-gray"
+            <div className="flex flex-col gap-2">
+              {exploreLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  className="font-body text-sm text-mid-gray hover:text-white transition-colors duration-300"
                 >
-                  {p}
-                </span>
+                  {l.label}
+                </a>
               ))}
             </div>
           </div>
@@ -76,10 +76,7 @@ export default function Footer() {
           <p className="font-body text-xs text-warm-gray">
             &copy; {new Date().getFullYear()} drew nagda. all rights reserved.
           </p>
-          <p className="font-body text-xs text-warm-gray">
-            business &middot; fitness &middot; family &middot; investments
-            &middot; community
-          </p>
+          <p className="font-body text-xs text-warm-gray">todo es posible</p>
         </div>
       </div>
     </footer>

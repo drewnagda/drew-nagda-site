@@ -23,12 +23,9 @@ export default function About() {
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
               <p className="mt-8 font-body text-lg md:text-xl text-warm-gray leading-relaxed">
-                I spent a decade in tech, first as an early team member at
-                SinglePlatform (acquired for $100M), Lean Startup Machine, and
-                then at Rap Genius (now Genius), which grew into the largest
-                lyrics site on the internet. Those years taught me how to scale
-                startups, build large online communities, and what relentless
-                execution actually looks like up close.
+                Before real estate I spent a decade in NYC tech: early team at
+                SinglePlatform, Lean Startup Machine, and Genius. The full
+                tour is in the journey below.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
@@ -63,10 +60,8 @@ export default function About() {
                 <div className="space-y-6">
                   {[
                     { label: "location", value: "pasadena, ca" },
-                    { label: "background", value: "tech \u2192 real estate" },
                     { label: "notable", value: "SinglePlatform, Genius" },
                     { label: "track record", value: "300+ distressed properties" },
-                    { label: "focus", value: "real estate & community" },
                     { label: "philosophy", value: "todo es posible" },
                     { label: "family", value: "ezra & thalia" },
                   ].map((item) => (
