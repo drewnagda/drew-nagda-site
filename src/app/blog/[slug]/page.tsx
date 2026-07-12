@@ -142,45 +142,7 @@ export default async function BlogPost({
               className="w-full h-full"
             />
           </div>
-        ) : (
-          <div className="aspect-video mb-12 bg-parchment border border-light-stone flex items-center justify-center">
-            <div className="text-center">
-              <svg
-                className="w-16 h-16 text-light-stone mx-auto mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"
-                />
-              </svg>
-              <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-light-stone">
-                video coming soon
-              </p>
-              <p className="mt-2 font-body text-sm text-mid-gray">
-                subscribe on{" "}
-                <a
-                  href="https://youtube.com/@drewnagda"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-stone hover:text-neon-dark underline underline-offset-2 transition-colors"
-                >
-                  youtube
-                </a>{" "}
-                to get notified
-              </p>
-            </div>
-          </div>
-        )}
+        ) : null}
 
         {/* Divider */}
         <div className="w-16 h-[2px] bg-neon mb-12" />
