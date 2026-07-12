@@ -26,7 +26,7 @@ const stages = [
     name: "sales",
     tagline: "kept in the family",
     detail:
-      "thalia is our real estate agent and our property manager. the person who designed the home is the one who sells it, so nobody has to fake the enthusiasm.",
+      "thalia is our real estate agent and our property manager. the person who designed the home is the one who sells it and manages it. no handoffs, no middlemen.",
   },
   {
     name: "leasing",
