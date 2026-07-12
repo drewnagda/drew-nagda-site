@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const stats = [
   { end: 300, suffix: "+", label: "properties", accent: true },
-  { end: 6, suffix: "", label: "cities lived", accent: false },
+  { end: 5, suffix: "", label: "cities lived", accent: false },
   { end: 1, suffix: "", label: "family", accent: false },
 ];
 

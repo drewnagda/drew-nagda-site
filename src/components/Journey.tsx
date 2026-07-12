@@ -23,18 +23,10 @@ const stops = [
   {
     city: "manhattan",
     state: "ny",
-    years: "2010–2015",
+    years: "2010–2016",
     title: "the startup wave",
     story:
-      "five years inside nyc tech at full speed: singleplatform through a $100m acquisition, lean startup machine, rap genius as it became the internet's home for lyrics.",
-  },
-  {
-    city: "brooklyn",
-    state: "ny",
-    years: "2015–2016",
-    title: "last stop east",
-    story:
-      "one more new york chapter before the biggest decision yet: leaving it all to go west.",
+      "six years inside nyc tech at full speed: singleplatform through a $100m acquisition, lean startup machine, rap genius as it became the internet's home for lyrics.",
   },
   {
     city: "upland",
@@ -70,7 +62,7 @@ export default function Journey() {
             the journey
           </h2>
           <p className="mt-4 font-body text-lg text-warm-gray max-w-xl">
-            six stops, ocala to pasadena, the long way. tap a pin.
+            five stops, ocala to pasadena, the long way. tap a pin.
           </p>
         </ScrollReveal>
 
@@ -78,7 +70,7 @@ export default function Journey() {
         <ScrollReveal delay={0.15} className="hidden md:block">
           <div className="mt-20 relative">
             <div className="absolute left-8 right-8 top-[13px] border-t-2 border-dashed border-light-stone" />
-            <div className="grid grid-cols-6 relative">
+            <div className="grid grid-cols-5 relative">
               {stops.map((s, i) => (
                 <button
                   key={s.city}

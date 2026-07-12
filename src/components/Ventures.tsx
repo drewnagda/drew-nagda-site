@@ -40,16 +40,6 @@ const ventures = [
     accent: "bg-stone",
     link: "https://x.com/nagda",
   },
-  {
-    name: "angel investor",
-    category: "investments",
-    description:
-      "investing in AI, Real Estate, and Consumer Products. Reach out if you want to pitch your company.",
-    role: "investor",
-    tags: ["AI", "real estate", "consumer products"],
-    accent: "bg-neon",
-    link: "mailto:drew@drewnagda.com",
-  },
 ];
 
 export default function Ventures() {
