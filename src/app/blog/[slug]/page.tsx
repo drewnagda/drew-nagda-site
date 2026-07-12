@@ -204,7 +204,7 @@ export default async function BlogPost({
           </p>
           <div className="flex flex-wrap gap-6">
             <a
-              href="https://twitter.com/drewnagda"
+              href="https://x.com/nagda"
               target="_blank"
               rel="noopener noreferrer"
               className="font-heading text-sm font-medium text-stone hover:text-neon-dark transition-colors duration-300"
