@@ -8,31 +8,31 @@ const stages = [
     name: "acquisition",
     tagline: "direct to seller",
     detail:
-      "deals come from outreach, not listings. we go direct to owners of distressed properties: probate, tired landlords, houses nobody else wants. we close fast, as-is. 300+ closed this way.",
+      "we buy distressed properties straight from the owner. fire-damaged homes are our specialty, along with probate and the houses nobody else will touch. no listings, no bidding wars. we close fast, as-is. 300+ and counting.",
   },
   {
     name: "construction",
     tagline: "in-house crews",
     detail:
-      "our own crews take a property down to the studs and back. no general-contractor markup, no waiting in someone else's queue. budgets and timelines we actually control.",
+      "our own crews, built the way any great team gets built: treat people with respect and they put love into the work. you can see it in the finished home. no gc markup, no waiting in someone else's queue.",
   },
   {
     name: "design",
-    tagline: "built for the block",
+    tagline: "designed with thalia",
     detail:
-      "every property is designed for its neighborhood and its exit: finishes that rent or sell, budgeted to the dollar. distressed to desirable is a design problem as much as a construction one.",
+      "thalia and i design every home together, eco-friendly materials and all. a fire-damaged shell walks in one side and comes out the other as a place you'd actually want to live.",
   },
   {
     name: "sales",
-    tagline: "our own brokerage",
+    tagline: "kept in the family",
     detail:
-      "we sell what we build. running sales in-house keeps the underwriting honest. we know what buyers actually pay because we're in the market every week.",
+      "thalia is our real estate agent and our property manager. the person who designed the home is the one who sells it, so nobody has to fake the enthusiasm.",
   },
   {
     name: "leasing",
-    tagline: "operate what we keep",
+    tagline: "tenants are customers",
     detail:
-      "property management under the same roof. the properties we hold, we manage, so we underwrite like operators, not speculators.",
+      "we treat tenants like customers, because they are. a great product and a great place to live is the whole business model. happy tenants stay, and staying is what compounds.",
   },
 ];
 

@@ -10,7 +10,7 @@ const stops = [
     years: "the beginning",
     title: "roots",
     story:
-      "born and raised. small-town florida is where the work ethic comes from.",
+      "born and raised in small-town florida. the work ethic, the loyalty, the todo es posible: it all starts here.",
   },
   {
     city: "bloomington",
@@ -18,7 +18,7 @@ const stops = [
     years: "2006–2010",
     title: "first company",
     story:
-      "business management at indiana university, and a tutoring company started on campus. first taste of building something people pay for.",
+      "four years of business school at indiana. the real education was the tutoring company i started on campus: first customers, first hires, first taste of building.",
   },
   {
     city: "manhattan",
@@ -26,7 +26,7 @@ const stops = [
     years: "2010–2016",
     title: "the startup wave",
     story:
-      "six years inside nyc tech at full speed: singleplatform through a $100m acquisition, lean startup machine, rap genius as it became the internet's home for lyrics.",
+      "six years riding nyc tech at full speed. singleplatform from early team to a $100m exit, lean startup machine, rap genius while it became the internet's home for lyrics. i watched companies scale from the inside and took notes.",
   },
   {
     city: "upland",
@@ -34,7 +34,7 @@ const stops = [
     years: "2016–2023",
     title: "all in for the girl",
     story:
-      "thalia's family is from the inland empire, so that's where we landed: her dad's spare bedroom, learning real estate from zero. seven years later: 300+ distressed properties and a vertically integrated company.",
+      "moved west for thalia. her family is from the inland empire, so we landed in her dad's spare bedroom and learned real estate from absolute zero. seven years later: 300+ distressed homes rebuilt and a company that does everything in-house.",
   },
   {
     city: "pasadena",
@@ -42,7 +42,7 @@ const stops = [
     years: "2023–now",
     title: "home",
     story:
-      "where we live with our son ezra, who made me a dad in 2024. the next decade gets built from here.",
+      "home base with thalia and ezra, who made me a dad in 2024. the machine runs east of here. the reason for it lives in this house.",
   },
 ];
 
