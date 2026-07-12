@@ -44,8 +44,9 @@ export default function Machine() {
     <section id="machine" className="bg-soft-black py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <ScrollReveal>
-          <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-true-black bg-neon px-3 py-1.5 inline-block">
-            SECTION 02
+          <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon">
+            <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+            02 &mdash; the machine
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-raw-white leading-tight">
             the machine
@@ -101,6 +102,28 @@ export default function Machine() {
             <p className="mt-4 font-body text-lg text-mid-gray leading-relaxed max-w-3xl">
               {stage.detail}
             </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.25}>
+          <div className="mt-20">
+            <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon">
+              <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+              proof &mdash; before &amp; after
+            </span>
+            <p className="mt-4 font-body text-lg text-mid-gray max-w-2xl">
+              the machine, on camera. real projects — bought distressed,
+              rebuilt in-house.
+            </p>
+            <div className="mt-8 relative aspect-video border border-warm-charcoal bg-dark-surface">
+              <iframe
+                src="https://player.vimeo.com/video/1209317785?title=0&byline=0&portrait=0&dnt=1"
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="before and after — nagda homes projects"
+              />
+            </div>
           </div>
         </ScrollReveal>
       </div>

@@ -54,8 +54,9 @@ export default function Pillars() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Section label */}
         <ScrollReveal>
-          <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-neon">
-            SECTION 05
+          <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon">
+            <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+            05 &mdash; pillars
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-white leading-tight">
             the five pillars

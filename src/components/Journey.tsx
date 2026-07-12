@@ -62,8 +62,9 @@ export default function Journey() {
     <section id="journey" className="bg-raw-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <ScrollReveal>
-          <span className="font-heading text-[11px] font-semibold tracking-[0.25em] uppercase text-neon bg-true-black px-3 py-1.5 inline-block">
-            SECTION 03
+          <span className="inline-flex items-center gap-3 font-heading text-[11px] font-semibold tracking-[0.3em] uppercase text-neon-dark">
+            <span className="inline-block w-10 h-[2px] bg-neon" aria-hidden />
+            03 &mdash; the journey
           </span>
           <h2 className="mt-6 font-heading font-light text-4xl md:text-5xl text-stone leading-tight">
             the journey
