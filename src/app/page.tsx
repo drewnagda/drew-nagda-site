@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import WorldCupStrip from "@/components/WorldCupStrip";
 import About from "@/components/About";
 import Machine from "@/components/Machine";
 import Journey from "@/components/Journey";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <WorldCupStrip />
       <About />
       <Machine />
       <Journey />
