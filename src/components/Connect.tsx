@@ -9,8 +9,8 @@ const connectLinks = [
   },
   {
     label: "twitter / x",
-    handle: "@drewnagda",
-    href: "https://twitter.com/drewnagda",
+    handle: "@nagda",
+    href: "https://x.com/nagda",
     description: "daily insights and building in public",
   },
   {

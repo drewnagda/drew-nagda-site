@@ -28,7 +28,7 @@ const ventures = [
     role: "builder in public",
     tags: ["business", "community", "daily insights"],
     accent: "bg-stone",
-    link: "https://twitter.com/drewnagda",
+    link: "https://x.com/nagda",
   },
   {
     name: "angel investor",

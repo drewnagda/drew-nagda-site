@@ -8,7 +8,7 @@ const pillarLinks = [
 
 const socialLinks = [
   { label: "youtube", href: "https://youtube.com/@drewnagda" },
-  { label: "twitter / x", href: "https://twitter.com/drewnagda" },
+  { label: "twitter / x", href: "https://x.com/nagda" },
   { label: "linkedin", href: "https://linkedin.com/in/drewnagda" },
   { label: "blog", href: "/blog" },
 ];
