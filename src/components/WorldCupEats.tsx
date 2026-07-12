@@ -26,7 +26,7 @@ export default function WorldCupEats() {
         <ScrollReveal delay={0.15}>
           <div className="mt-12 relative border border-warm-charcoal bg-soft-black">
             <iframe
-              src="https://www.worldcupeats.com"
+              src="https://www.worldcupeats.com/?tab=map"
               className="w-full h-[70vh] min-h-[480px]"
               loading="lazy"
               title="world cup eats la: the interactive map"
