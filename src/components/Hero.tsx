@@ -3,36 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const stats = [
-  { end: 300, suffix: "+", label: "properties", accent: true },
-  { end: 5, suffix: "", label: "cities lived", accent: false },
-  { end: 1, suffix: "", label: "family", accent: false },
-];
-
-function CountUp({ end, suffix }: { end: number; suffix: string }) {
-  const [val, setVal] = useState(0);
-
-  useEffect(() => {
-    let frame: number;
-    const duration = 1600;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      setVal(Math.round(end * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [end]);
-
-  return (
-    <span>
-      {val}
-      {suffix}
-    </span>
-  );
-}
-
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
 
@@ -139,29 +109,6 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Stats */}
-            <div
-              className={`mt-16 flex gap-10 md:gap-14 border-t border-warm-charcoal pt-8 transition-all duration-700 delay-[900ms] ${
-                loaded
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-            >
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p
-                    className={`font-heading text-3xl md:text-4xl font-bold ${
-                      s.accent ? "text-neon" : "text-raw-white"
-                    }`}
-                  >
-                    {loaded ? <CountUp end={s.end} suffix={s.suffix} /> : 0}
-                  </p>
-                  <p className="mt-1 font-heading text-[10px] font-semibold tracking-[0.2em] uppercase text-warm-gray">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Photo */}

@@ -13,9 +13,13 @@ export default function WorldCupEats() {
             eating the world cup, with my son
           </h2>
           <p className="mt-4 font-body text-lg text-mid-gray max-w-2xl">
-            the 2026 world cup is in north america. ezra and i are eating all
-            of it: one country, one la restaurant at a time. four months of
-            filming and counting. every episode lands as a flag on the map.
+            the plan was simple: eat at an la restaurant for every country in
+            the world cup. it started as a fun way to experience the
+            tournament in our own backyard. four months later it&apos;s become
+            an education in culture and cuisine for my son. ezra gets excited
+            to try new foods, experiments with everything on the table, and
+            doesn&apos;t need an ipad at a restaurant. he&apos;s too busy
+            being there.
           </p>
         </ScrollReveal>
 
