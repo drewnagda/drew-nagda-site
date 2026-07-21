@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RYAN BELALCAZAR | Earn Every Rep.</title>
+<meta name="description" content="Strength. Conditioning. Nutrition. Mindset. The Belalcazar Method." />
+<meta property="og:title" content="RYAN BELALCAZAR | Earn Every Rep." />
+<meta property="og:description" content="The Belalcazar Method: the complete system for building a body that performs." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FCD116'/><text y='72' x='50' text-anchor='middle' font-family='Arial Black' font-size='58' font-weight='900' fill='%23000'>RB</text></svg>" />
+<style>
+  :root {
+    --black: #0a0a0a;
+    --ink: #111111;
+    --volt: #FCD116;   /* Colombian yellow */
+    --blue: #1a4fd6;   /* Colombian blue, brightened for dark bg */
+    --blue-deep: #003893;
+    --red: #CE1126;    /* Colombian red */
+    --white: #ffffff;
+    --gray: #8a8a8a;
+    --line: rgba(255,255,255,.12);
+    --font-display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+    --font-body: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--volt); color: #000; }
+  h1,h2,h3,.display { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Colombian tricolor stripe */
+  .tricolor { display: flex; height: 8px; }
+  .tricolor i { display: block; height: 100%; }
+  .tricolor .y { flex: 2; background: var(--volt); }
+  .tricolor .b { flex: 1; background: var(--blue-deep); }
+  .tricolor .r { flex: 1; background: var(--red); }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 68px;
+    background: rgba(10,10,10,.82); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 20px; letter-spacing: .04em; }
+  .logo .rb { background: var(--volt); color: #000; padding: 3px 8px 1px; font-size: 18px; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .nav-links a { color: #ccc; transition: color .2s; }
+  .nav-links a:hover { color: var(--volt); }
+  .nav-cta {
+    background: var(--volt); color: #000; font-weight: 800; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase; padding: 12px 22px;
+    transition: transform .15s;
+  }
+  .nav-cta:hover { transform: scale(1.05); }
+  @media (max-width: 860px) { .nav-links { display: none; } }
+
+  /* ---------- HERO ---------- */
+  header {
+    position: relative; min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 0 80px;
+    background:
+      radial-gradient(1000px 500px at 85% 15%, rgba(252,209,22,.14), transparent 60%),
+      radial-gradient(700px 500px at 5% 90%, rgba(252,209,22,.07), transparent 60%),
+      var(--black);
+  }
+  header::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: repeating-linear-gradient(115deg, transparent 0 180px, rgba(255,255,255,.025) 180px 181px);
+  }
+  header .wrap { position: relative; z-index: 2; }
+  .hero-img {
+    position: absolute; top: 0; right: 0; height: 100%;
+    width: clamp(280px, 44vw, 660px);
+    object-fit: cover; object-position: 50% 38%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%);
+    mask-image: linear-gradient(90deg, transparent, #000 30%);
+  }
+  @media (max-width: 860px) {
+    .hero-img { width: 100%; opacity: .3; }
+  }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--volt);
+    margin-bottom: 24px;
+  }
+  .hero-kicker::before { content: ""; width: 46px; height: 3px; background: var(--volt); }
+  .hero-title {
+    font-size: clamp(64px, 13vw, 176px);
+    line-height: .92; margin-bottom: 34px;
+  }
+  .hero-title .stroke {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--white);
+  }
+  .hero-title .volt { color: var(--volt); }
+  .hero-sub { max-width: 560px; color: #b5b5b5; font-size: 17px; line-height: 1.65; margin-bottom: 40px; }
+  .hero-sub strong { color: var(--white); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 18px 34px; transition: transform .15s, background .2s, color .2s;
+    cursor: pointer; border: none; font-family: var(--font-body);
+  }
+  .btn-volt { background: var(--volt); color: #000; }
+  .btn-volt:hover { transform: translateY(-2px) scale(1.02); }
+  .btn-ghost { background: transparent; color: var(--white); border: 2px solid var(--white); }
+  .btn-ghost:hover { background: var(--white); color: #000; }
+  .hero-meta { margin-top: 64px; display: flex; gap: 48px; flex-wrap: wrap; }
+  .hero-meta div span { display: block; }
+  .hero-meta .num { font-family: var(--font-display); font-size: 34px; color: var(--volt); }
+  .hero-meta .lbl { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee { background: var(--volt); color: #000; overflow: hidden; padding: 14px 0; transform: rotate(-1.2deg) scale(1.02); border-top: 3px solid #000; border-bottom: 3px solid #000; }
+  .marquee-inner { display: flex; width: max-content; animation: scroll 22s linear infinite; }
+  .marquee span { font-family: var(--font-display); font-size: 26px; text-transform: uppercase; white-space: nowrap; padding: 0 22px; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 110px 0; position: relative; }
+  .sec-tag { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--volt); margin-bottom: 18px; }
+  .sec-tag::before { content: ""; width: 34px; height: 3px; background: var(--volt); }
+  .sec-title { font-size: clamp(42px, 6.5vw, 84px); line-height: .95; margin-bottom: 22px; }
+  .sec-sub { color: #b5b5b5; font-size: 16px; line-height: 1.7; max-width: 620px; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+  .photo-slot {
+    aspect-ratio: 4/5; position: relative; overflow: hidden;
+    background:
+      repeating-linear-gradient(45deg, #161616 0 14px, #101010 14px 28px);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .photo-slot span { position: relative; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: rgba(252,209,22,.7); text-align: center; line-height: 2; padding: 0 20px; }
+  .photo-slot .big { display: block; font-family: var(--font-display); font-size: 88px; color: rgba(255,255,255,.06); letter-spacing: 0; line-height: 1; }
+  .about-quote { border-left: 4px solid var(--red); padding-left: 20px; margin: 28px 0; font-family: var(--font-display); font-size: 24px; line-height: 1.25; }
+  .ig-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; font-weight: 700; letter-spacing: .1em; font-size: 13px; text-transform: uppercase; color: var(--volt); border-bottom: 2px solid var(--volt); padding-bottom: 4px; }
+
+  /* method */
+  #method { background: #f4f4f2; color: var(--ink); }
+  #method .sec-sub { color: #444; }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #d9d9d5; border: 2px solid var(--ink); margin: 56px 0 48px; }
+  @media (max-width: 980px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar { background: #f4f4f2; padding: 34px 26px 40px; transition: background .2s; }
+  .pillar:hover { background: var(--volt); }
+  .pillar .idx { font-family: var(--font-display); font-size: 15px; color: #999; }
+  .pillar:hover .idx { color: #000; }
+  .pillar h3 { font-size: 30px; margin: 10px 0 12px; }
+  .pillar p { font-size: 14px; line-height: 1.65; color: #555; }
+  .pillar:hover p { color: #1a1a1a; }
+  .method-cta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 28px;
+    background: var(--ink); color: var(--white); padding: 40px; justify-content: space-between;
+  }
+  .method-cta h3 { font-size: clamp(26px, 4vw, 44px); }
+  .method-cta p { color: #aaa; font-size: 14px; margin-top: 6px; }
+
+  /* packages */
+  .pack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  @media (max-width: 980px) { .pack-grid { grid-template-columns: 1fr; max-width: 480px; } }
+  .pack {
+    border: 1px solid var(--line); padding: 40px 32px; display: flex; flex-direction: column;
+    background: #101010; position: relative; transition: transform .2s, border-color .2s;
+  }
+  .pack:hover { transform: translateY(-6px); border-color: rgba(252,209,22,.6); }
+  .pack.featured { border: 2px solid var(--volt); background: #121405; }
+  .pack .flag {
+    position: absolute; top: -14px; left: 32px; background: var(--red); color: #fff;
+    font-size: 11px; font-weight: 800; letter-spacing: .14em; padding: 6px 12px; text-transform: uppercase;
+  }
+  .pack h3 { font-size: 32px; }
+  .pack .price { font-family: var(--font-display); font-size: 48px; color: var(--volt); margin: 18px 0 4px; }
+  .pack .per { font-size: 12px; color: var(--gray); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 26px; }
+  .pack ul { list-style: none; flex: 1; margin-bottom: 32px; }
+  .pack li { padding: 11px 0; border-top: 1px solid var(--line); font-size: 14px; color: #ccc; display: flex; gap: 10px; }
+  .pack li::before { content: "/"; color: var(--volt); font-weight: 800; }
+  .pack .btn { justify-content: center; }
+
+  /* events */
+  #events { background: #0d0d0d; }
+  .event-list { margin-top: 48px; border-top: 1px solid var(--line); }
+  .event {
+    display: grid; grid-template-columns: 130px 1fr auto; gap: 24px; align-items: center;
+    padding: 30px 0; border-bottom: 1px solid var(--line); transition: background .2s, padding-left .2s;
+  }
+  .event:hover { background: rgba(252,209,22,.04); padding-left: 12px; }
+  @media (max-width: 720px) { .event { grid-template-columns: 90px 1fr; } .event .btn { grid-column: 2; justify-self: start; } }
+  .event .date { text-align: center; border: 2px solid var(--red); padding: 12px 8px; }
+  .event .date .d { font-family: var(--font-display); font-size: 34px; color: var(--volt); line-height: 1; }
+  .event .date .m { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #ccc; margin-top: 4px; }
+  .event h3 { font-size: 26px; margin-bottom: 6px; }
+  .event p { color: var(--gray); font-size: 14px; }
+  .event .btn { padding: 13px 22px; font-size: 12px; }
+
+  /* partners */
+  #partners { border-top: 1px solid var(--line); }
+  .partner-strip {
+    display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: center; margin: 44px 0 56px;
+    font-family: var(--font-display); font-size: 30px; color: rgba(255,255,255,.22);
+    text-transform: uppercase; letter-spacing: .04em;
+  }
+  .partner-strip .live { color: var(--volt); }
+  .partner-strip .slot { border: 1px dashed rgba(255,255,255,.25); padding: 6px 18px; font-size: 20px; color: rgba(255,255,255,.3); }
+  .partner-box {
+    border: 2px solid var(--blue); padding: 44px 40px;
+    display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center;
+    background: linear-gradient(120deg, rgba(26,79,214,.14), transparent 55%);
+  }
+  @media (max-width: 860px) { .partner-box { grid-template-columns: 1fr; } }
+  .partner-box h3 { font-size: clamp(28px, 4.5vw, 46px); margin-bottom: 12px; }
+  .partner-box p { color: #b5b5b5; font-size: 15px; line-height: 1.7; }
+  .partner-box .btn { justify-self: start; }
+  @media (min-width: 861px) { .partner-box .btn { justify-self: end; } }
+
+  /* sms */
+  #sms { background: var(--volt); color: #000; }
+  #sms .sec-tag { color: #000; } #sms .sec-tag::before { background: #000; }
+  #sms .sec-sub { color: #222; max-width: 540px; }
+  .sms-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
+  @media (max-width: 860px) { .sms-grid { grid-template-columns: 1fr; } }
+  .sms-form { display: flex; gap: 0; margin-top: 8px; }
+  .sms-form input {
+    flex: 1; min-width: 0; border: 3px solid #000; background: #fff; padding: 18px 20px;
+    font-size: 16px; font-family: var(--font-body); font-weight: 600; outline: none;
+  }
+  .sms-form button {
+    background: #000; color: var(--volt); border: 3px solid #000; padding: 18px 30px;
+    font-weight: 800; font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer; font-family: var(--font-body); transition: background .2s, color .2s;
+  }
+  .sms-form button:hover { background: #222; }
+  .sms-note { font-size: 12px; color: #333; margin-top: 14px; font-weight: 500; }
+  .sms-success { display: none; margin-top: 10px; background: #000; color: var(--volt); padding: 22px 26px; font-family: var(--font-display); font-size: 22px; }
+  .sms-big { font-size: clamp(48px, 7vw, 92px); line-height: .95; }
+
+  /* footer */
+  footer { padding: 80px 0 40px; border-top: 1px solid var(--line); }
+  .foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; align-items: flex-end; }
+  .foot-big { font-family: var(--font-display); font-size: clamp(40px, 8vw, 110px); line-height: .95; color: rgba(255,255,255,.08); text-transform: uppercase; }
+  .foot-links { display: flex; gap: 26px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .foot-links a:hover { color: var(--volt); }
+  .foot-base { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: var(--gray); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="tricolor" style="position:fixed;top:68px;left:0;right:0;z-index:99;height:5px;"><i class="y"></i><i class="b"></i><i class="r"></i></div>
+<nav>
+  <a class="logo" href="#top"><span class="rb">RB</span> BELALCAZAR</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#method">The Method</a>
+    <a href="#packages">Packages</a>
+    <a href="#events">Events</a>
+    <a href="#partners">Partners</a>
+  </div>
+  <a class="nav-cta" href="#sms">Start Now</a>
+</nav>
+
+<header id="top">
+  <img class="hero-img" src="hero.jpg" alt="Ryan Belalcazar walking in front of the Rose Bowl" />
+  <div class="wrap">
+    <div class="hero-kicker">Ryan Belalcazar &middot; RAD Global Athlete &middot; Trainer</div>
+    <h1 class="hero-title">
+      EARN<br />
+      <span class="stroke">EVERY</span><br />
+      <span class="volt">REP.</span>
+    </h1>
+    <p class="hero-sub">
+      No hacks. No shortcuts. <strong>One system.</strong> Strength. Conditioning.
+      Nutrition. Mindset. Show up. Do the work.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-volt" href="belalcazar-method.pdf" download>Get the Method &darr;</a>
+      <a class="btn btn-ghost" href="#packages">Train With Ryan</a>
+    </div>
+    <div class="hero-meta">
+      <div><span class="num">RAD</span><span class="lbl">Global Athlete</span></div>
+      <div><span class="num">500+</span><span class="lbl">Sessions Coached</span></div>
+      <div><span class="num">4</span><span class="lbl">Pillars, One System</span></div>
+      <div><span class="num">0</span><span class="lbl">Excuses Accepted</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Earn Every Rep /</span><span>No Shortcuts /</span><span>No Excuses /</span><span>Show Up /</span><span>Do The Work /</span><span>Built Not Born /</span>
+    <span>Earn Every Rep /</span><span>No Shortcuts /</span><span>No Excuses /</span><span>Show Up /</span><span>Do The Work /</span><span>Built Not Born /</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="sec-tag">The Man Behind The Method</div>
+      <h2 class="sec-title">Ryan<br />Belalcazar</h2>
+      <p class="sec-sub">
+        <strong style="color:#fff;">RAD Global athlete. Coach. Competitor.</strong>
+        Ryan builds standards, not workouts. Heavy lifts. A real engine.
+        Food you can live on. Discipline that holds it all together.
+      </p>
+      <div class="about-quote">"Motivation gets you to day three.<br />The Method gets you to day three hundred."</div>
+      <p class="sec-sub">
+        First pull-up or next PR, you get the same thing. A plan. A coach in your corner.
+        Zero tolerance for quitting.
+      </p>
+      <a class="ig-link" href="https://instagram.com/RyanBelalcazar" target="_blank" rel="noopener">@RyanBelalcazar &nearr;</a>
+    </div>
+    <div class="photo-slot reveal">
+      <img src="hero.jpg" alt="Ryan Belalcazar training" />
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="sec-tag reveal">The System</div>
+    <h2 class="sec-title reveal">The Belalcazar<br />Method.</h2>
+    <p class="sec-sub reveal">Four pillars. One standard. Nothing is random.</p>
+    <div class="pillars reveal">
+      <div class="pillar"><div class="idx">01</div><h3>Strength</h3><p>Progressive overload done right. Compound lifts, tracked numbers, forced adaptation.</p></div>
+      <div class="pillar"><div class="idx">02</div><h3>Conditioning</h3><p>Build an engine that doesn't quit. Intervals and zone work programmed around your lifting.</p></div>
+      <div class="pillar"><div class="idx">03</div><h3>Nutrition</h3><p>No fad diets. Protein-anchored, portion-based eating you can run for life.</p></div>
+      <div class="pillar"><div class="idx">04</div><h3>Mindset</h3><p>Discipline beats motivation. Daily standards and a scorecard you answer to.</p></div>
+    </div>
+    <div class="method-cta reveal">
+      <div>
+        <h3>Get the free guide.</h3>
+        <p>The Belalcazar Method PDF. The pillars. A sample week. The daily standard.</p>
+      </div>
+      <a class="btn btn-volt" href="belalcazar-method.pdf" download>Download the PDF &darr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="wrap">
+    <div class="sec-tag reveal">Ways To Train</div>
+    <h2 class="sec-title reveal">Pick Your<br />Level.</h2>
+    <p class="sec-sub reveal">Same Method. More coach at every level.</p>
+    <div class="pack-grid">
+      <div class="pack reveal">
+        <h3>The Spark</h3>
+        <div class="price">01</div>
+        <div class="per">Foundation</div>
+        <ul>
+          <li>4 one-on-one sessions / month</li>
+          <li>Movement assessment &amp; goal map</li>
+          <li>Custom training program</li>
+          <li>Monthly progress check-in</li>
+        </ul>
+        <a class="btn btn-ghost" href="#sms">Inquire</a>
+      </div>
+      <div class="pack featured reveal">
+        <div class="flag">Most Popular</div>
+        <h3>The Standard</h3>
+        <div class="price">02</div>
+        <div class="per">Full Commitment</div>
+        <ul>
+          <li>8 one-on-one sessions / month</li>
+          <li>Full Belalcazar Method programming</li>
+          <li>Nutrition targets &amp; weekly adjustments</li>
+          <li>Text access to Ryan (Mon-Fri)</li>
+          <li>Bi-weekly progress reviews</li>
+        </ul>
+        <a class="btn btn-volt" href="#sms">Inquire</a>
+      </div>
+      <div class="pack reveal">
+        <h3>The Method</h3>
+        <div class="price">03</div>
+        <div class="per">Total Transformation</div>
+        <ul>
+          <li>12 one-on-one sessions / month</li>
+          <li>Full transformation programming</li>
+          <li>Custom nutrition plan &amp; meal structure</li>
+          <li>24/7 priority text access</li>
+          <li>Event &amp; challenge entry included</li>
+        </ul>
+        <a class="btn btn-ghost" href="#sms">Inquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <div class="sec-tag reveal">On The Calendar</div>
+    <h2 class="sec-title reveal">Pull Up.<br />Show Out.</h2>
+    <p class="sec-sub reveal">Train alone, build a body. Train together, build a standard. All levels. Pull up.</p>
+    <div class="event-list reveal">
+      <div class="event">
+        <div class="date"><div class="d">26</div><div class="m">Jul</div></div>
+        <div><h3>Hybrid Sunday: Workout + 5K Run</h3><p>Sunday, July 26 · 8:00 AM · The Rose Bowl. Hydration + protein goody bags with every sign up.</p></div>
+        <a class="btn btn-ghost" href="#sms">Get Details</a>
+      </div>
+      <div class="event">
+        <div class="date"><div class="d">SAT</div><div class="m">Weekly</div></div>
+        <div><h3>RB Run Club</h3><p>5K community run. All paces. Every Saturday, 8:00 AM.</p></div>
+        <a class="btn btn-ghost" href="#sms">Get Details</a>
+      </div>
+      <div class="event">
+        <div class="date"><div class="d">01</div><div class="m">Sep</div></div>
+        <div><h3>6-Week Method Challenge</h3><p>Six weeks. Scorecards. Leaderboard. Before and afters. Limited spots.</p></div>
+        <a class="btn btn-ghost" href="#sms">Get Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap">
+    <div class="sec-tag reveal">Brands &amp; Partnerships</div>
+    <h2 class="sec-title reveal">Build<br />With Ryan.</h2>
+    <p class="sec-sub reveal">
+      Ryan works with brands that live the standard. Gear. Recovery. Nutrition. Events.
+      Real content. Real community. Real results.
+    </p>
+    <div class="partner-strip reveal">
+      <span class="live">RAD Global</span>
+      <span class="slot">Your Brand</span>
+      <span class="slot">Your Brand</span>
+      <span class="slot">Your Brand</span>
+    </div>
+    <div class="partner-box reveal">
+      <div>
+        <h3>Partner inquiries</h3>
+        <p>
+          Sponsorships. Ambassadorships. Events. Content.
+          Tell us what you want to build. Answers within 48 hours.
+        </p>
+      </div>
+      <a class="btn btn-volt" href="mailto:partnerships@belalcazarmethod.com?subject=Partnership%20Inquiry%3A%20Ryan%20Belalcazar">Pitch a Partnership &nearr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="sms">
+  <div class="wrap sms-grid">
+    <div class="reveal">
+      <div class="sec-tag">Join The Community</div>
+      <h2 class="sms-big">In Or<br />Out.</h2>
+      <p class="sec-sub" style="margin-top:18px;">
+        Event drops. Challenge openings. One training tip a week worth reading.
+        Texts hit first. Email if you'd rather. No spam. Ever.
+      </p>
+    </div>
+    <div class="reveal">
+      <form class="sms-form" id="smsForm" autocomplete="off">
+        <input type="tel" id="phone" inputmode="tel" placeholder="Phone number" aria-label="Phone number" />
+        <button type="submit">I'm In</button>
+      </form>
+      <form class="sms-form" id="emailForm" autocomplete="off" style="margin-top:12px;">
+        <input type="email" id="email" inputmode="email" placeholder="Or your email" aria-label="Email address" />
+        <button type="submit">I'm In</button>
+      </form>
+      <div class="sms-success" id="smsSuccess">You're in. First drop hits soon.</div>
+      <p class="sms-note">By signing up you agree to receive updates from Ryan. Msg &amp; data rates may apply. Reply STOP / unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<div class="tricolor"><i class="y"></i><i class="b"></i><i class="r"></i></div>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-big">Earn<br />Every Rep.</div>
+      <div>
+        <div class="foot-links">
+          <a href="https://instagram.com/RyanBelalcazar" target="_blank" rel="noopener">Instagram</a>
+          <a href="belalcazar-method.pdf" download>The Method PDF</a>
+          <a href="#partners">Partnerships</a>
+          <a href="#packages">Packages</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Ryan Belalcazar. All rights reserved.</span>
+      <span>NYC &middot; @RyanBelalcazar</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // community mock signup (phone or email)
+  function joinCommunity(e, inputId) {
+    e.preventDefault();
+    const v = document.getElementById(inputId).value.trim();
+    if (v.length < 5) return;
+    document.getElementById('smsForm').style.display = 'none';
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('smsSuccess').style.display = 'block';
+  }
+  document.getElementById('smsForm').addEventListener('submit', (e) => joinCommunity(e, 'phone'));
+  document.getElementById('emailForm').addEventListener('submit', (e) => joinCommunity(e, 'email'));
+</script>
+</body>
+</html>
