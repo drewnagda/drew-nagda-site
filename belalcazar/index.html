@@ -82,6 +82,17 @@
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
     background-image: repeating-linear-gradient(115deg, transparent 0 180px, rgba(255,255,255,.025) 180px 181px);
   }
+  header .wrap { position: relative; z-index: 2; }
+  .hero-img {
+    position: absolute; top: 0; right: 0; height: 100%;
+    width: clamp(280px, 44vw, 660px);
+    object-fit: cover; object-position: 50% 38%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%);
+    mask-image: linear-gradient(90deg, transparent, #000 30%);
+  }
+  @media (max-width: 860px) {
+    .hero-img { width: 100%; opacity: .3; }
+  }
   .hero-kicker {
     display: inline-flex; align-items: center; gap: 12px;
     font-size: 13px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--volt);
@@ -138,7 +149,7 @@
     border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
   }
-  .photo-slot::before { content: ""; position: absolute; inset: 14px; border: 1px dashed rgba(252,209,22,.35); }
+  .photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
   .photo-slot span { position: relative; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: rgba(252,209,22,.7); text-align: center; line-height: 2; padding: 0 20px; }
   .photo-slot .big { display: block; font-family: var(--font-display); font-size: 88px; color: rgba(255,255,255,.06); letter-spacing: 0; line-height: 1; }
   .about-quote { border-left: 4px solid var(--red); padding-left: 20px; margin: 28px 0; font-family: var(--font-display); font-size: 24px; line-height: 1.25; }
@@ -271,6 +282,7 @@
 </nav>
 
 <header id="top">
+  <img class="hero-img" src="hero.jpg" alt="Ryan Belalcazar walking in front of the Rose Bowl" />
   <div class="wrap">
     <div class="hero-kicker">Ryan Belalcazar &middot; RAD Global Athlete &middot; Trainer</div>
     <h1 class="hero-title">
@@ -321,7 +333,7 @@
       <a class="ig-link" href="https://instagram.com/RyanBelalcazar" target="_blank" rel="noopener">@RyanBelalcazar &nearr;</a>
     </div>
     <div class="photo-slot reveal">
-      <span><span class="big">RB</span>Photo drop zone<br />Ryan — training shot</span>
+      <img src="hero.jpg" alt="Ryan Belalcazar training" />
     </div>
   </div>
 </section>
