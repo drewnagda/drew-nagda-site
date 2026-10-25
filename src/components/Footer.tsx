@@ -1,83 +1,19 @@
-const exploreLinks = [
-  { label: "about", href: "/#about" },
-  { label: "the machine", href: "/#machine" },
-  { label: "the journey", href: "/#journey" },
-  { label: "world cup eats", href: "https://worldcupeats.com" },
-];
-
-const socialLinks = [
-  { label: "youtube", href: "https://youtube.com/@drewnagda" },
-  { label: "twitter / x", href: "https://x.com/nagda" },
-  { label: "linkedin", href: "https://linkedin.com/in/drewnagda" },
-  { label: "blog", href: "/blog" },
-];
+import Link from "next/link";
+import { HELLO_MAILTO, EMAIL, SOCIALS } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-true-black text-white">
-      {/* Neon accent line */}
-      <div className="h-[2px] bg-neon" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {/* Monogram & tagline */}
-          <div>
-            <div className="flex items-center justify-center w-14 h-14 border-2 border-neon mb-6">
-              <span className="font-heading font-bold text-lg text-white">
-                dn
-              </span>
-            </div>
-            <p className="font-heading text-sm text-mid-gray tracking-wide">
-              family and loyalty over everything.
-            </p>
-          </div>
-
-          {/* Explore */}
-          <div>
-            <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon mb-6">
-              explore
-            </p>
-            <div className="flex flex-col gap-2">
-              {exploreLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="font-body text-sm text-mid-gray hover:text-white transition-colors duration-300"
-                >
-                  {l.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Social */}
-          <div>
-            <p className="font-heading text-[11px] font-semibold tracking-[0.2em] uppercase text-neon mb-6">
-              connect
-            </p>
-            <div className="flex flex-col gap-2">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-sm text-mid-gray hover:text-white transition-colors duration-300"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-warm-charcoal flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-body text-xs text-warm-gray">
-            &copy; {new Date().getFullYear()} drew nagda. all rights reserved.
-          </p>
-          <p className="font-body text-xs text-warm-gray">todo es posible</p>
-        </div>
+    <footer className="ftr">
+      <div className="wrap ftr-in">
+        <p className="ftr-sign">Todo es posible.</p>
+        <nav className="ftr-links" aria-label="Footer">
+          <Link href="/about">about</Link>
+          <a href={HELLO_MAILTO}>{EMAIL}</a>
+          {SOCIALS.map((s) => (
+            <a key={s.label} href={s.href} rel="me noopener" target="_blank">{s.label.toLowerCase()}</a>
+          ))}
+        </nav>
+        <p className="ftr-small">© {new Date().getFullYear()} Drew Nagda. Pasadena, California.</p>
       </div>
     </footer>
   );

@@ -1,102 +1,58 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { homePersonSchema } from "@/lib/schema";
+
+const DESCRIPTION = "Drew Nagda is a distressed real estate developer, investor, and technologist in Pasadena, California, and the founder of Nagda Homes: more than 300 homes bought, rebuilt, and sold across Southern California. Previously SinglePlatform, Rap Genius, Lean Startup Machine, Techstars, Rancho Humilde.";
+const TW_DESCRIPTION = "Drew Nagda is a distressed real estate developer, investor, and technologist in Pasadena, California, and the founder of Nagda Homes, which has bought, rebuilt, and sold more than 300 homes across Southern California. He was previously at SinglePlatform, Rap Genius, Lean Startup Machine, and Techstars.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.drewnagda.com"),
-  title: {
-    default: "Drew Nagda · todo es posible",
-    template: "%s · Drew Nagda",
-  },
-  description:
-    "Drew Nagda is a real estate investor, entrepreneur, and angel investor in Pasadena, CA. Founder of Nagda Homes, early team at SinglePlatform and Genius.",
-  keywords: [
-    "Drew Nagda",
-    "Nagda Homes",
-    "real estate investor",
-    "Inland Empire real estate",
-    "angel investor",
-    "Pasadena",
-  ],
-  alternates: { canonical: "/" },
+  title: { default: "Drew Nagda", template: "%s · Drew Nagda" },
+  description: DESCRIPTION,
+  keywords: ["Drew Nagda", "Nagda Homes", "distressed real estate developer", "Southern California real estate investor", "fire-damage restoration", "ADU development", "Inland Empire", "Pasadena", "SinglePlatform", "Rap Genius", "Genius", "Lean Startup Machine", "Techstars", "Rancho Humilde", "On Deck", "angel investor", "World Cup Eats", "Puro Raza", "Latino Entrepreneur Summit", "Indiana University"],
+  alternates: { canonical: "https://www.drewnagda.com" },
   openGraph: {
-    type: "website",
+    type: "profile",
     url: "https://www.drewnagda.com",
     siteName: "Drew Nagda",
-    title: "Drew Nagda · todo es posible",
-    description:
-      "Real estate investor, entrepreneur, and angel investor. Founder of Nagda Homes, early team at SinglePlatform and Genius.",
+    title: "Drew Nagda",
+    description: DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     site: "@nagda",
     creator: "@nagda",
-    title: "Drew Nagda · todo es posible",
-    description:
-      "Real estate investor, entrepreneur, and angel investor. Founder of Nagda Homes.",
+    title: "Drew Nagda",
+    description: TW_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 };
 
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Drew Nagda",
-  url: "https://www.drewnagda.com",
-  email: "mailto:drew@drewnagda.com",
-  image: "https://www.drewnagda.com/opengraph-image.png",
-  jobTitle: "Founder & Principal, Nagda Homes",
-  description:
-    "Real estate investor, entrepreneur, and angel investor based in Pasadena, CA. Early team member at SinglePlatform and Genius.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Pasadena",
-    addressRegion: "CA",
-    addressCountry: "US",
-  },
-  worksFor: {
-    "@type": "Organization",
-    name: "Nagda Homes",
-  },
-  alumniOf: [
-    { "@type": "Organization", name: "SinglePlatform" },
-    { "@type": "Organization", name: "Genius" },
-    { "@type": "Organization", name: "Lean Startup Machine" },
-  ],
-  knowsAbout: [
-    "Real Estate Investing",
-    "Property Management",
-    "Angel Investing",
-    "Startups",
-    "Community Building",
-  ],
-  sameAs: [
-    "https://x.com/nagda",
-    "https://linkedin.com/in/drewnagda",
-    "https://youtube.com/@drewnagda",
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F2EC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0C0C0C" },
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homePersonSchema) }}
         />
+        <a className="skip" href="#main">Skip to content</a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>
