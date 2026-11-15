@@ -1,0 +1,17 @@
+{
+  "name": "Grind AI: get your reps in",
+  "short_name": "Grind AI",
+  "description": "Learn how the pros get better, do your reps every day, and bring a buddy.",
+  "id": "/grind",
+  "start_url": "/grind",
+  "scope": "/grind",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f3ea",
+  "theme_color": "#1f4a3b",
+  "icons": [
+    { "src": "/grind/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/grind/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/grind/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
