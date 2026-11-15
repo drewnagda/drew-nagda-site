@@ -10,7 +10,6 @@ const proof = [
   { name: "SinglePlatform", note: "Early employee, sold for $100M" },
   { name: "Rap Genius", note: "Early team, executive editor" },
   { name: "Techstars", note: "2013" },
-  { name: "Rancho Humilde", note: "Special projects" },
 ];
 
 const stages = [
