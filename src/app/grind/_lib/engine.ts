@@ -2,7 +2,7 @@
 // Coins, streaks and levels are derived from the daily log, never stored,
 // so unchecking a rep can never leave the numbers out of sync.
 
-import { COINS_PER_REP, LEVELS, PERFECT_BONUS, findTrack, type Action } from "./content";
+import { COINS_PER_REP, LEVELS, PERFECT_BONUS, PROPS, findTrack, type Action } from "./content";
 
 export type Goal = { id: string; trackId: string; name: string; emoji: string; actions: Action[] };
 export type Day = { done: string[]; plan: string[] };
@@ -37,7 +37,12 @@ export type State = {
   misses: Record<string, string>;
   sound: boolean;
   remindAt: string;
+  pinHash?: string;
+  propsIn: PropIn[];
+  propsOut: Record<string, string[]>;
+  propsGiven: number;
 };
+export type PropIn = { from: string; p: string; d: string };
 
 export const KEY = "grind.v1";
 
@@ -46,7 +51,7 @@ export const rid = () => Math.random().toString(36).slice(2, 10);
 export function fresh(): State {
   return {
     v: 1, uid: rid(), name: "", onboarded: false, goals: [], log: {}, frozen: [], freezes: 0, spent: 0,
-    rewards: [], redeemed: [], badges: {}, buddies: [], misses: {}, sound: true, remindAt: "16:00",
+    rewards: [], redeemed: [], badges: {}, buddies: [], misses: {}, sound: true, remindAt: "16:00", propsIn: [], propsOut: {}, propsGiven: 0,
   };
 }
 
@@ -151,7 +156,7 @@ export function reconcile(s: State, t = today()): { state: State; usedFreezes: s
 }
 
 /* ---------- buddies ---------- */
-export type Checkin = { v: 1; id: string; n: string; d: string; r: number; p: number; s: number; h: string; m?: string };
+export type Checkin = { v: 1; id: string; n: string; d: string; r: number; p: number; s: number; h: string; m?: string; k?: { to: string; p: string[] }[] };
 
 /** Last 14 days as a bitstring ending today: "1" = showed up. Lets your buddy see your real streak. */
 export function history(s: State, t = today(), len = 14) {
@@ -167,6 +172,7 @@ export function checkinLink(s: State, origin: string, t = today()) {
   const lastMiss = Object.keys(s.misses).sort().pop();
   const c: Checkin = {
     v: 1, id: s.uid, n: s.name || "Your buddy", d: t, r: repsOn(s, t), p: plannedCount(s), s: streak(s, t), h: history(s, t),
+    ...(Object.keys(s.propsOut).length ? { k: Object.entries(s.propsOut).map(([to, p]) => ({ to, p })) } : {}),
     ...(lastMiss && between(lastMiss, t) <= 2 ? { m: `${pretty(lastMiss, { weekday: "long" })}: ${s.misses[lastMiss]}`.slice(0, 220) } : {}),
   };
   return `${origin}/grind?c=${b64e(JSON.stringify(c))}`;
@@ -181,12 +187,13 @@ export function readCheckin(param: string): Checkin | null {
       r: Math.max(0, Math.min(99, Number(c.r) || 0)), p: Math.max(0, Math.min(99, Number(c.p) || 0)),
       s: Math.max(0, Math.min(9999, Number(c.s) || 0)), h: String(c.h ?? "").replace(/[^01]/g, "").slice(-30),
       m: c.m ? String(c.m).slice(0, 220) : undefined,
+      k: Array.isArray(c.k) ? c.k.slice(0, 10).map((x: { to: unknown; p: unknown }) => ({ to: String(x?.to ?? "").slice(0, 20), p: Array.isArray(x?.p) ? x.p.filter((id: unknown) => PROPS.some((q) => q.id === id)).slice(0, 5) : [] })) : undefined,
     };
   } catch { return null; }
 }
 
 /** Merge a received check-in into the buddy list (matched by their device id). */
-export function applyCheckin(s: State, c: Checkin): { state: State; buddy: Buddy; isNew: boolean } {
+export function applyCheckin(s: State, c: Checkin): { state: State; buddy: Buddy; isNew: boolean; props: string[] } {
   const existing = s.buddies.find((b) => b.id === c.id);
   const days = { ...(existing?.days ?? {}) };
   [...c.h].forEach((bit, i) => {
@@ -199,7 +206,12 @@ export function applyCheckin(s: State, c: Checkin): { state: State; buddy: Buddy
     lastSeen: c.d, lastNote: c.m ?? existing?.lastNote,
   };
   const buddies = existing ? s.buddies.map((b) => (b.id === c.id ? buddy : b)) : [...s.buddies, buddy];
-  return { state: { ...s, buddies }, buddy, isNew: !existing };
+  // Props addressed to me. Skip ones already logged from this buddy today so re-opening a link doesn't double count.
+  const mine = (c.k ?? []).filter((x) => x.to === s.uid).flatMap((x) => x.p);
+  const seen = new Set(s.propsIn.filter((x) => x.from === c.n && x.d === c.d).map((x) => x.p));
+  const props = mine.filter((p) => !seen.has(p));
+  const propsIn = [...props.map((p) => ({ from: c.n, p, d: c.d })), ...s.propsIn].slice(0, 200);
+  return { state: { ...s, buddies, propsIn }, buddy, isNew: !existing, props };
 }
 
 export const buddyShowed = (b: Buddy, d: string) => (b.days[d]?.r ?? 0) > 0;
@@ -234,6 +246,7 @@ export const BADGES: Badge[] = [
   { id: "varsity", name: "Varsity", how: "Reach Varsity level in any goal", icon: "🎽", test: (s) => s.goals.some((g) => goalReps(s, g) >= 30) },
   { id: "perfect5", name: "Perfectionist", how: "Have 5 perfect days", icon: "💎", test: (s) => perfectDays(s) >= 5 },
   { id: "team3", name: "Team streak", how: "3 days in a row you and a buddy both show up", icon: "👊", test: (s) => s.buddies.some((b) => teamStreak(s, b) >= 3) },
+  { id: "hype", name: "Hype squad", how: "Give your buddies 5 props", icon: "📣", test: (s) => s.propsGiven >= 5 },
   { id: "streak14", name: "Locked in", how: "Reach a 14 day streak", icon: "🔒", test: (s) => bestStreak(s) >= 14 },
   { id: "coins1000", name: "The bank", how: "Earn 1,000 coins", icon: "🏦", test: (s) => earned(s) >= 1000 },
   { id: "streak30", name: "Unbreakable", how: "Reach a 30 day streak", icon: "🏆", test: (s) => bestStreak(s) >= 30 },
@@ -270,11 +283,46 @@ export function reminderICS(time: string, name: string) {
   const end = `${start.getFullYear()}${pad(start.getMonth() + 1)}${pad(start.getDate())}T${pad(h)}${pad(Math.min(m + 15, 59))}00`;
   const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   return [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Grind//Daily reps//EN", "BEGIN:VEVENT",
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Grind AI//Daily reps//EN", "BEGIN:VEVENT",
     `UID:grind-${rid()}@drewnagda.com`, `DTSTAMP:${stamp}`, `DTSTART:${local}`, `DTEND:${end}`, "RRULE:FREQ=DAILY",
-    `SUMMARY:🔥 Get your reps in${name ? `, ${name}` : ""}`,
-    "DESCRIPTION:Open Grind and check off today's reps. Don't let the flame go out.",
+    `SUMMARY:🔥 Grind AI: get your reps in${name ? `, ${name}` : ""}`,
+    "DESCRIPTION:Open Grind AI and check off today's reps. Don't let the flame go out.",
     "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Get your reps in", "END:VALARM",
     "END:VEVENT", "END:VCALENDAR",
   ].join("\r\n");
+}
+
+/* ---------- parent PIN (hashed so it isn't sitting in plain text) ---------- */
+export async function hashPin(pin: string) {
+  const data = new TextEncoder().encode(`grind-pin:${pin}`);
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/* ---------- demo data: a lived-in account to show people what it looks like ---------- */
+export function demoState(): State {
+  const t = today();
+  const s = fresh();
+  s.uid = "demo"; s.name = "Mason"; s.onboarded = true; s.sound = true;
+  s.goals = [goalFromTrack("catcher"), goalFromTrack("study")];
+  s.goals[0].id = "catcher-demo"; s.goals[1].id = "study-demo";
+  const keys = s.goals.flatMap((g) => g.actions.map((a) => `${g.id}:${a.id}`));
+  for (let i = 18; i >= 1; i--) {
+    if (i === 9) continue; // one honest miss, covered by a freeze
+    const d = addDays(t, -i);
+    const done = i % 4 === 0 ? keys.slice(0, 4) : keys;
+    s.log[d] = { done, plan: keys };
+  }
+  s.frozen = [addDays(t, -9)];
+  s.log[t] = { done: keys.slice(0, 2), plan: keys };
+  s.freezes = 1; s.spent = 400;
+  s.rewards = [{ id: "r1", name: "Trip to the batting cages", cost: 1000 }, { id: "r2", name: "Pick what's for dinner", cost: 300 }];
+  s.redeemed = [{ id: "x1", name: "Pick what's for dinner", cost: 300, at: new Date(Date.now() - 5 * 86400000).toISOString() }];
+  s.misses = { [addDays(t, -9)]: "Had a doubleheader and got home late. Drills before school next time." };
+  const days: Record<string, BuddyDay> = {};
+  for (let i = 12; i >= 0; i--) if (i !== 5) days[addDays(t, -i)] = { r: 3, p: 4 };
+  s.buddies = [{ id: "demo-b", name: "Ezra", addedAt: addDays(t, -14), days, streak: 5, lastSeen: t }];
+  s.propsIn = [{ from: "Ezra", p: "beast", d: t }, { from: "Ezra", p: "locked", d: addDays(t, -1) }, { from: "Ezra", p: "pro", d: addDays(t, -3) }];
+  s.propsGiven = 4;
+  return awardBadges(s).state;
 }

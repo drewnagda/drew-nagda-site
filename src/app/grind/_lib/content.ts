@@ -129,7 +129,7 @@ export const TRACKS: Track[] = [
       { label: "The Learning Scientists: six proven ways to study", url: "https://www.learningscientists.org/downloadable-materials" },
     ],
     actions: [
-      { id: "focus", text: "25-minute focus block, phone in another room", how: "Set a timer for 25 minutes. Work on one thing only. When the timer rings, take a 5-minute break. That is one rep." },
+      { id: "focus", text: "20-minute focus block, no screens nearby", how: "Set a timer for 20 minutes. Work on one thing only: homework, spelling, math facts. When the timer rings, take a 5-minute break. That is one rep." },
       { id: "quiz", text: "Quiz yourself: 10 questions from memory", how: "Before you open your notes, write down or say everything you remember. Then check. The things you missed are your study list." },
       { id: "teach", text: "Teach it back out loud in 2 minutes", how: "Explain today's topic to a parent, a friend, or your dog. Simple words only. Where you got stuck is what to review." },
     ],
@@ -148,14 +148,14 @@ export const TRACKS: Track[] = [
     blurb: "Everyday habits to feel stronger and have more energy.",
     headline: "How to get fit the smart way",
     principles: [
-      { title: "Move 60 minutes a day", body: "Health experts recommend kids and teens get an hour of activity every day: playing sports, biking, running around. It does not have to be all at once." },
+      { title: "Move 60 minutes a day", body: "The CDC recommends kids your age get an hour of activity every day: playing sports, biking, running around. It does not have to be all at once." },
       { title: "Form first, then more", body: "Ten good push-ups beat twenty sloppy ones. Get the movement right, then add reps." },
       { title: "A little more each week", body: "Add one rep or a few seconds each week. Small steps stacked up are how strong people got strong." },
       { title: "Recovery is training", body: "Sleep, water, and real food are when your body actually gets stronger. Rest days count." },
     ],
     actions: [
       { id: "cardio", text: "20 minutes of hard play or cardio", how: "Run, bike, swim, shoot hoops, play tag. Anything that gets you breathing hard counts." },
-      { id: "circuit", text: "Bodyweight circuit, 3 rounds", how: "Each round: 10 push-ups (knees are fine), 15 squats, and a 20-second plank. Rest one minute between rounds." },
+      { id: "circuit", text: "Bodyweight circuit, 3 rounds", how: "Each round: 8 push-ups (knees are fine), 12 squats, and a 20-second plank. Rest one minute between rounds. Form first: if it hurts, stop and tell a grown-up." },
       { id: "recover", text: "Water with every meal and lights out on time", how: "Swap one sugary drink for water and get to bed on time. Recovery is a rep too." },
     ],
     tips: [
@@ -178,7 +178,7 @@ export const TRACKS: Track[] = [
       { title: "Sum it up", body: "After you read, say what happened in one sentence. If you can, you understood it." },
     ],
     actions: [
-      { id: "read", text: "Read for 20 minutes", how: "Any book you like. Set a timer and put the phone away." },
+      { id: "read", text: "Read for 20 minutes", how: "Any book you like: sports stories, comics, graphic novels all count. Set a timer and put screens away." },
       { id: "sum", text: "Sum up what you read in one sentence", how: "Say it out loud or write it down: 'This chapter was about...'" },
       { id: "word", text: "Look up one new word", how: "Find one word you did not know, look it up, and use it in a sentence today." },
     ],
@@ -226,3 +226,16 @@ export const REWARD_IDEAS = [
   { name: "Trip to the batting cages", cost: 1000 },
   { name: "New batting gloves", cost: 2500 },
 ];
+
+/** Props: pre-written shout-outs buddies send each other. Learned from tbh and Gas:
+ *  positive-only, pre-written (no free-text messaging between kids), and tied to real
+ *  effort instead of popularity. Not anonymous, no public counts. */
+export const PROPS = [
+  { id: "beast", label: "Beast mode", emoji: "🦍" },
+  { id: "locked", label: "Locked in", emoji: "🔒" },
+  { id: "pro", label: "Playing like a pro", emoji: "⭐" },
+  { id: "noquit", label: "Never quits", emoji: "💪" },
+  { id: "streak", label: "That streak is crazy", emoji: "🔥" },
+  { id: "proud", label: "Proud of you", emoji: "🙌" },
+];
+export const propById = (id: string) => PROPS.find((p) => p.id === id);

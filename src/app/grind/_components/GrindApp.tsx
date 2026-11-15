@@ -2,20 +2,22 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  COINS_PER_REP, FREEZE_COST, LEVELS, MAX_FREEZES, PERFECT_BONUS, REWARD_IDEAS, TRACKS,
-  findTrack, yt, type Action,
+  COINS_PER_REP, FREEZE_COST, LEVELS, MAX_FREEZES, PERFECT_BONUS, PROPS, REWARD_IDEAS, TRACKS,
+  findTrack, propById, yt, type Action,
 } from "../_lib/content";
 import {
-  BADGES, KEY, addDays, applyCheckin, awardBadges, bestStreak, buddyShowed, buddyStreak, checkinLink, coins, earned,
+  BADGES, KEY, addDays, demoState, hashPin, applyCheckin, awardBadges, bestStreak, buddyShowed, buddyStreak, checkinLink, coins, earned,
   fresh, goalFromTrack, goalReps, isPerfect, level, load, parse, pretty, readCheckin, reconcile, reminderICS, repKey,
   repsOn, rid, save, streak, syncToday, teamStreak, tipFor, today, toggleRep,
   type Badge, type Buddy, type Checkin, type Goal, type State,
 } from "../_lib/engine";
 
 type Tab = "today" | "plan" | "rewards" | "buddies";
+/** Runs only after a parent enters (or first sets) the PIN. Gets the latest state so nothing is overwritten. */
+export type NeedPin = (title: string, fn: (st: State) => void) => void;
 type Pop =
   | { kind: "badge"; badges: Badge[] }
-  | { kind: "checkin"; c: Checkin; isNew: boolean; self?: boolean }
+  | { kind: "checkin"; c: Checkin; isNew: boolean; self?: boolean; props?: string[] }
   | { kind: "level"; goal: string; name: string }
   | { kind: "redeem"; name: string; cost: number; at: string }
   | { kind: "perfect" }
@@ -131,6 +133,8 @@ export default function GrindApp() {
   const [planGoal, setPlanGoal] = useState<string | null>(null);
   const [day, setDay] = useState(today());
   const prevLevels = useRef<Record<string, number>>({});
+  const demo = useRef(false);
+  const [gate, setGate] = useState<{ title: string; fn: (st: State) => void } | null>(null);
 
   const push = (p: Pop) => setPops((q) => [...q, p]);
   const say = useCallback((t: string) => { setToast(t); setTimeout(() => setToast((x) => (x === t ? null : x)), 2400); }, []);
@@ -138,7 +142,8 @@ export default function GrindApp() {
   /** Single write path: save, then award any badges the new state earned. */
   const commit = useCallback((next: State) => {
     const { state, fresh: got } = awardBadges(next);
-    save(state); setS(state);
+    if (!demo.current) save(state);
+    setS(state);
     // The perfect-day celebration already covers the "Perfect day" badge; don't show it twice.
     const show = got.filter((b) => !(b.id === "perfect1" && isPerfect(state.log[today()])));
     if (show.length) setTimeout(() => { push({ kind: "badge", badges: show }); confetti(); chime(state.sound, [660, 880, 1100, 1320]); buzz([20, 40, 20]); }, 450);
@@ -147,10 +152,12 @@ export default function GrindApp() {
 
   // Boot: load, spend freezes on missed days, read an incoming buddy check-in link.
   useEffect(() => {
-    let st = load();
+    const params = new URLSearchParams(location.search);
+    demo.current = params.has("demo");
+    let st = demo.current ? demoState() : load();
     const r = reconcile(st);
     st = syncToday(r.state);
-    const q = new URLSearchParams(location.search).get("c");
+    const q = demo.current ? null : params.get("c");
     const incoming: Pop[] = [];
     if (r.usedFreezes.length) incoming.push({ kind: "freeze", days: r.usedFreezes });
     if (q) {
@@ -159,7 +166,7 @@ export default function GrindApp() {
       else if (c) {
         const res = applyCheckin(st, c);
         st = res.state;
-        incoming.push({ kind: "checkin", c, isNew: res.isNew });
+        incoming.push({ kind: "checkin", c, isNew: res.isNew, props: res.props });
         setTab("buddies");
       }
       history.replaceState(null, "", location.pathname);
@@ -216,14 +223,24 @@ export default function GrindApp() {
     const line = doneToday === 0
       ? `${st.name || "I"}: no reps yet today, but I'm on it.`
       : `${st.name || "I"} got ${doneToday}/${st.goals.reduce((n, g) => n + g.actions.length, 0)} reps in today${cur ? `. 🔥 ${cur} day streak` : ""}. Your turn. Tap to log my check-in:`;
-    const r = await shareOrCopy(line, url);
+    const given = Object.values(st.propsOut).reduce((n, p) => n + p.length, 0);
+    const r = await shareOrCopy(given ? `${line} (+${given} props for you)` : line, url);
     if (r === "copied") say("Check-in link copied. Paste it to your buddy.");
+    if (r !== "failed" && given) commit({ ...st, propsOut: {}, propsGiven: st.propsGiven + given });
   }
+
+  const needPin: NeedPin = (title, fn) => setGate({ title, fn });
 
   return (
     <div className="g-app">
+      {demo.current && (
+        <div className="g-demo">
+          <span><b>Demo.</b> Sample data, nothing saves.</span>
+          <a href="/grind">Start your own</a>
+        </div>
+      )}
       <header className="g-top">
-        <div className="g-brand"><span className="g-logo"><Flame lit size={18} /></span>Grind</div>
+        <div className="g-brand"><span className="g-logo"><Flame lit size={18} /></span>Grind<em>AI</em></div>
         <div className="g-stats">
           <span className={`g-pill ${atRisk ? "risk" : ""}`} title="Current streak"><Flame lit={cur > 0 && !atRisk} />{cur}</span>
           <span className="g-pill" title="Coins"><Coin />{wallet}</span>
@@ -238,7 +255,7 @@ export default function GrindApp() {
         {tab === "today" && <TodayView s={st} t={t} cur={cur} atRisk={atRisk} onTick={tick} onSend={sendCheckin} commit={commit}
           openPlan={(id) => { setPlanGoal(id); setTab("plan"); }} />}
         {tab === "plan" && <PlanView s={st} commit={commit} focus={planGoal} setFocus={setPlanGoal} say={say} />}
-        {tab === "rewards" && <RewardsView s={st} commit={commit} say={say}
+        {tab === "rewards" && <RewardsView s={st} commit={commit} say={say} needPin={needPin}
           onRedeem={(r) => { push({ kind: "redeem", ...r }); confetti(); chime(st.sound, [784, 988, 1318]); }} />}
         {tab === "buddies" && <BuddiesView s={st} commit={commit} onSend={sendCheckin} say={say} />}
       </main>
@@ -260,7 +277,8 @@ export default function GrindApp() {
 
       {floaters.map((f) => <span key={f.id} className="g-float" style={{ left: f.x, top: f.y }}><Coin size={16} />{f.t}</span>)}
       {toast && <div className="g-toast" role="status">{toast}</div>}
-      {settings && <Settings s={st} commit={commit} close={() => setSettings(false)} say={say} />}
+      {settings && <Settings s={st} commit={commit} close={() => setSettings(false)} say={say} needPin={needPin} demo={demo.current} />}
+      {gate && <PinGate s={st} title={gate.title} close={() => setGate(null)} onOk={(next) => { const fn = gate.fn; setGate(null); if (next !== st) commit(next); fn(next); }} />}
       {pops[0] && <PopCard p={pops[0]} s={st} close={() => setPops((q) => q.slice(1))} onSend={sendCheckin} />}
     </div>
   );
@@ -281,7 +299,7 @@ function Onboarding({ initial, onDone }: { initial: State; onDone: (s: State) =>
         {step === 0 && (
           <section className="g-onb-step">
             <div className="g-hero-flame"><Flame lit size={84} /></div>
-            <h1>Grind</h1>
+            <h1>Grind <span className="g-ai">AI</span></h1>
             <p className="g-lead">Learn how the pros get better. Do the reps every day. Earn coins, build your streak, and bring a buddy who notices when you skip.</p>
             <label className="g-lbl" htmlFor="g-name">What should we call you?</label>
             <input id="g-name" className="g-input big" value={name} onChange={(e) => setName(e.target.value.slice(0, 24))} placeholder="Your first name" autoComplete="given-name" />
@@ -564,7 +582,7 @@ function PlanView({ s, commit, focus, setFocus, say }: { s: State; commit: (s: S
 }
 
 /* ============================== rewards ============================== */
-function RewardsView({ s, commit, say, onRedeem }: { s: State; commit: (s: State) => State; say: (t: string) => void; onRedeem: (r: { name: string; cost: number; at: string }) => void }) {
+function RewardsView({ s, commit, say, onRedeem, needPin }: { s: State; commit: (s: State) => State; say: (t: string) => void; needPin: NeedPin; onRedeem: (r: { name: string; cost: number; at: string }) => void }) {
   const wallet = coins(s);
   const [nr, setNr] = useState({ name: "", cost: "" });
   const got = BADGES.filter((b) => s.badges[b.id]).length;
@@ -593,29 +611,37 @@ function RewardsView({ s, commit, say, onRedeem }: { s: State; commit: (s: State
             <li key={r.id}>
               <span className="ic">🎁</span>
               <div><strong>{r.name}</strong><p>{wallet >= r.cost ? "You can afford this." : `${r.cost - wallet} more coins.`}</p></div>
-              <button className="g-buy" disabled={wallet < r.cost} onClick={() => {
-                if (!confirm(`Spend ${r.cost} coins on "${r.name}"?`)) return;
+              <button className="g-buy" disabled={wallet < r.cost} onClick={() => needPin(`Parent: approve "${r.name}" for ${r.cost} coins`, (st) => {
                 const at = new Date().toISOString();
-                commit({ ...s, spent: s.spent + r.cost, redeemed: [{ id: rid(), name: r.name, cost: r.cost, at }, ...s.redeemed] });
+                commit({ ...st, spent: st.spent + r.cost, redeemed: [{ id: rid(), name: r.name, cost: r.cost, at }, ...st.redeemed] });
                 onRedeem({ name: r.name, cost: r.cost, at });
-              }}><Coin size={14} />{r.cost}</button>
+              })}><Coin size={14} />{r.cost}</button>
             </li>
           ))}
         </ul>
         <details className="g-add">
           <summary>+ Add a real-life reward</summary>
-          <p className="g-sub">Agree on these with a parent. Coins come from real work, so the rewards should be real too.</p>
+          <p className="g-sub">Agree on these with a parent. Coins come from real work, so the rewards should be real too. Adding, removing and cashing in a reward all need the parent PIN.</p>
           <div className="g-ideas">{REWARD_IDEAS.filter((i) => !s.rewards.some((r) => r.name === i.name)).map((i) => (
-            <button key={i.name} onClick={() => commit({ ...s, rewards: [...s.rewards, { id: rid(), ...i }] })}>{i.name} · {i.cost}</button>
+            <button key={i.name} onClick={() => needPin(`Parent: add "${i.name}"`, (st) => commit({ ...st, rewards: [...st.rewards, { id: rid(), ...i }] }))}>{i.name} · {i.cost}</button>
           ))}</div>
           <div className="g-row">
             <input className="g-input" placeholder="Reward" value={nr.name} onChange={(e) => setNr({ ...nr, name: e.target.value.slice(0, 40) })} />
             <input className="g-input num" placeholder="Coins" inputMode="numeric" value={nr.cost} onChange={(e) => setNr({ ...nr, cost: e.target.value.replace(/\D/g, "").slice(0, 6) })} />
-            <button className="g-btn sm" disabled={!nr.name.trim() || !Number(nr.cost)} onClick={() => { commit({ ...s, rewards: [...s.rewards, { id: rid(), name: nr.name.trim(), cost: Number(nr.cost) }] }); setNr({ name: "", cost: "" }); }}>Add</button>
+            <button className="g-btn sm" disabled={!nr.name.trim() || !Number(nr.cost)} onClick={() => { const r = { id: rid(), name: nr.name.trim(), cost: Number(nr.cost) }; needPin(`Parent: add "${r.name}"`, (st) => { commit({ ...st, rewards: [...st.rewards, r] }); setNr({ name: "", cost: "" }); }); }}>Add</button>
           </div>
-          {s.rewards.length > 0 && <ul className="g-mini">{s.rewards.map((r) => <li key={r.id}>{r.name} · {r.cost}<button className="g-link danger" onClick={() => commit({ ...s, rewards: s.rewards.filter((x) => x.id !== r.id) })}>Remove</button></li>)}</ul>}
+          {s.rewards.length > 0 && <ul className="g-mini">{s.rewards.map((r) => <li key={r.id}>{r.name} · {r.cost}<button className="g-link danger" onClick={() => needPin(`Parent: remove "${r.name}"`, (st) => commit({ ...st, rewards: st.rewards.filter((x) => x.id !== r.id) }))}>Remove</button></li>)}</ul>}
         </details>
       </section>
+
+      {s.propsIn.length > 0 && (
+        <section className="g-card">
+          <h2>Props from your buddies</h2>
+          <ul className="g-props-in">
+            {s.propsIn.slice(0, 6).map((x, i) => { const pr = propById(x.p); return pr ? <li key={i}><span>{pr.emoji}</span><div><strong>{pr.label}</strong><em>from {x.from} · {pretty(x.d, { month: "short", day: "numeric" })}</em></div></li> : null; })}
+          </ul>
+        </section>
+      )}
 
       <section className="g-card">
         <div className="g-row between"><h2>Badges</h2><span className="g-sub">{got}/{BADGES.length}</span></div>
@@ -693,6 +719,24 @@ function BuddiesView({ s, commit, onSend, say }: { s: State; commit: (s: State) 
               <div className="row lbl"><span />{days.map((d) => <em key={d}>{pretty(d, { weekday: "narrow" })}</em>)}</div>
             </div>
             <p className="g-team">👊 Team streak: <b>{team} day{team === 1 ? "" : "s"}</b>{team === 0 ? ". Both show up today to start one." : ""}</p>
+            {!b.manual && (
+              <div className="g-give">
+                <span>Give {b.name} props <em>{(s.propsOut[b.id]?.length ?? 0)}/3</em></span>
+                <div className="g-ideas">
+                  {PROPS.map((pr) => {
+                    const on = s.propsOut[b.id]?.includes(pr.id);
+                    return <button key={pr.id} className={on ? "on" : ""} aria-pressed={on} onClick={() => {
+                      const cur = s.propsOut[b.id] ?? [];
+                      const next = on ? cur.filter((x) => x !== pr.id) : cur.length >= 3 ? cur : [...cur, pr.id];
+                      const propsOut = { ...s.propsOut, [b.id]: next };
+                      if (!next.length) delete propsOut[b.id];
+                      commit({ ...s, propsOut });
+                    }}>{pr.emoji} {pr.label}</button>;
+                  })}
+                </div>
+                {(s.propsOut[b.id]?.length ?? 0) > 0 && <p className="g-fine">These go with your next check-in. Tap Send my check-in above.</p>}
+              </div>
+            )}
             {b.lastNote && <blockquote className="g-note"><b>{b.name} answered for a miss:</b> {b.lastNote}</blockquote>}
             <div className="g-row wrap">
               {!fresh && <button className="g-btn sm" onClick={() => nudge(b)}>Nudge {b.name}</button>}
@@ -716,7 +760,7 @@ function BuddiesView({ s, commit, onSend, say }: { s: State; commit: (s: State) 
 }
 
 /* ============================== settings ============================== */
-function Settings({ s, commit, close, say }: { s: State; commit: (s: State) => State; close: () => void; say: (t: string) => void }) {
+function Settings({ s, commit, close, say, needPin, demo }: { s: State; commit: (s: State) => State; close: () => void; say: (t: string) => void; needPin: NeedPin; demo: boolean }) {
   const [name, setName] = useState(s.name);
   const [time, setTime] = useState(s.remindAt);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -738,24 +782,35 @@ function Settings({ s, commit, close, say }: { s: State; commit: (s: State) => S
 
       {!standalone && (
         <div className="g-card g-install">
-          <strong>Put Grind on your home screen</strong>
-          <p>{isIOS ? "In Safari, tap the Share button, then \"Add to Home Screen\". Grind opens like a real app." : "In your browser menu, tap \"Install app\" or \"Add to Home screen\"."}</p>
+          <strong>Put Grind AI on your home screen</strong>
+          <p>{isIOS ? "In Safari, tap the Share button, then \"Add to Home Screen\". Grind AI opens like a real app." : "In your browser menu, tap \"Install app\" or \"Add to Home screen\"."}</p>
         </div>
       )}
+
+      <h3 className="g-h3">Parent controls</h3>
+      <p className="g-fine">{s.pinHash ? "A parent PIN is set. It's needed to add, remove or cash in rewards, restore a backup, or start over." : "Set a 4-digit PIN so rewards need a parent's OK."}</p>
+      <div className="g-row wrap">
+        <button className="g-btn sm ghost" onClick={() => needPin(s.pinHash ? "Enter the current PIN to change it" : "Set a parent PIN", (st) => {
+          if (st.pinHash && s.pinHash) { commit({ ...st, pinHash: undefined }); setTimeout(() => needPin("Choose a new PIN", () => say("PIN updated")), 50); } else say("Parent PIN set");
+        })}>{s.pinHash ? "Change PIN" : "Set parent PIN"}</button>
+      </div>
 
       <h3 className="g-h3">Your data</h3>
       <p className="g-fine">Everything lives on this phone. Nothing is sent anywhere except the check-in links you choose to share. Back up before switching phones.</p>
       <div className="g-row wrap">
         <button className="g-btn sm ghost" onClick={() => download(`grind-backup-${today()}.json`, JSON.stringify(s), "application/json")}>Back up</button>
-        <button className="g-btn sm ghost" onClick={() => fileRef.current?.click()}>Restore</button>
+        <button className="g-btn sm ghost" disabled={demo} onClick={() => (s.pinHash ? needPin("Parent: restore a backup", () => fileRef.current?.click()) : fileRef.current?.click())}>Restore</button>
         <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={async (e) => {
           const f = e.target.files?.[0]; if (!f) return;
           try { const d = JSON.parse(await f.text()); if (d?.v !== 1 || !Array.isArray(d.goals)) throw 0; commit({ ...fresh(), ...d }); say("Restored"); close(); }
           catch { say("That file isn't a Grind backup"); }
         }} />
-        <button className="g-link danger" onClick={() => { if (confirm("Erase everything and start over? This can't be undone.")) { localStorage.removeItem(KEY); location.reload(); } }}>Start over</button>
+        <button className="g-link danger" disabled={demo} onClick={() => {
+          const wipe = () => { if (confirm("Erase everything and start over? This can't be undone.")) { localStorage.removeItem(KEY); location.reload(); } };
+          if (s.pinHash) needPin("Parent: start over", wipe); else wipe();
+        }}>Start over</button>
       </div>
-      <p className="g-fine g-credit">Grind was dreamed up by Mason. Built November 2026.</p>
+      <p className="g-fine g-credit">Grind AI was dreamed up by Mason, age 10. Built November 2026.</p>
     </Sheet>
   );
 }
@@ -772,12 +827,13 @@ function PopCard({ p, s, close, onSend }: { p: Pop; s: State; close: () => void;
       case "badge": return { icon: p.badges[0].icon, kicker: p.badges.length > 1 ? `${p.badges.length} badges unlocked` : "Badge unlocked", title: p.badges.map((b) => b.name).join(" + "), text: p.badges.map((b) => b.how).join(". ") + "." };
       case "checkin": {
         const c = p.c;
-        if (p.self) return { icon: "👋", kicker: "That's your link", title: "Send it to your buddy", text: "This is your own check-in. Text it to your buddy so it shows up in their Grind." };
+        if (p.self) return { icon: "👋", kicker: "That's your link", title: "Send it to your buddy", text: "This is your own check-in. Text it to your buddy so it shows up in their Grind AI." };
         const both = repsOn(s, t) > 0;
+        const got = (p.props ?? []).map(propById).filter(Boolean).map((x) => `${x!.emoji} ${x!.label}`);
         return {
           icon: "🤝", kicker: p.isNew ? "New buddy" : "Buddy check-in",
           title: c.r > 0 ? `${c.n} got ${c.r}${c.p ? `/${c.p}` : ""} reps in` : `${c.n} checked in`,
-          text: `${c.s > 0 ? `🔥 ${c.s} day streak. ` : ""}${c.d !== t ? `Sent ${pretty(c.d, { weekday: "long" })}. ` : ""}${c.m ? `They answered for a miss: "${c.m}". ` : ""}${both ? "You both showed up. Send yours back." : "Your move. Get your reps in and send yours back."}`,
+          text: `${c.s > 0 ? `🔥 ${c.s} day streak. ` : ""}${c.d !== t ? `Sent ${pretty(c.d, { weekday: "long" })}. ` : ""}${got.length ? `They gave you props: ${got.join(", ")}! ` : ""}${c.m ? `They answered for a miss: "${c.m}". ` : ""}${both ? "You both showed up. Send yours back." : "Your move. Get your reps in and send yours back."}`,
           cta: both ? "Send mine back" : undefined, act: onSend,
         };
       }
@@ -798,5 +854,40 @@ function PopCard({ p, s, close, onSend }: { p: Pop; s: State; close: () => void;
         </div>
       </div>
     </div>
+  );
+}
+
+/* ============================== parent PIN gate ============================== */
+function PinGate({ s, title, close, onOk }: { s: State; title: string; close: () => void; onOk: (next: State) => void }) {
+  const setting = !s.pinHash;
+  const [pin, setPin] = useState("");
+  const [first, setFirst] = useState<string | null>(null);
+  const [err, setErr] = useState("");
+  const [tries, setTries] = useState(0);
+  const prompt = setting ? (first ? "Type it again to confirm" : "Parent: choose a 4-digit PIN") : "Parent PIN";
+
+  async function enter(v: string) {
+    setPin(v); setErr("");
+    if (v.length < 4) return;
+    if (setting) {
+      if (!first) { setFirst(v); setPin(""); return; }
+      if (v !== first) { setErr("Those didn't match. Start again."); setFirst(null); setPin(""); return; }
+      onOk({ ...s, pinHash: await hashPin(v) });
+      return;
+    }
+    if ((await hashPin(v)) === s.pinHash) onOk(s);
+    else { setTries(tries + 1); setErr(tries >= 2 ? "Wrong PIN. Ask a parent." : "Wrong PIN."); setPin(""); buzz([40, 60, 40]); }
+  }
+
+  return (
+    <Sheet title={title} onClose={close}>
+      <p className="g-sub">{setting && !first ? "Rewards will need this PIN from now on. Keep it secret from the player." : prompt}</p>
+      <div className="g-pin" aria-hidden>{[0, 1, 2, 3].map((i) => <i key={i} className={i < pin.length ? "on" : ""} />)}</div>
+      <label className="sr-only" htmlFor="g-pin">{prompt}</label>
+      <input id="g-pin" className="g-input big g-pin-in" type="password" inputMode="numeric" autoComplete="off" autoFocus maxLength={4}
+        value={pin} onChange={(e) => enter(e.target.value.replace(/\D/g, "").slice(0, 4))} placeholder={setting && !first ? "New PIN" : "PIN"} />
+      {err && <p className="g-err" role="alert">{err}</p>}
+      {setting && <p className="g-fine">Forgot it later? Clearing this site's data in the phone's browser settings resets the app.</p>}
+    </Sheet>
   );
 }

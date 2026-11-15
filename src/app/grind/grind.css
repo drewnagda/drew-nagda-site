@@ -319,3 +319,24 @@ body:has(.g-app) { background: var(--g-bg, #f7f3ea); }
 @keyframes g-float-y { 50% { transform: translateY(-6px) rotate(-2deg); } }
 @keyframes g-wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-12deg) scale(1.08); } 40% { transform: rotate(10deg); } 60% { transform: rotate(-6deg); } 80% { transform: rotate(3deg); } }
 @media (prefers-reduced-motion: reduce) { .g-app *, .g-scrim *, .g-float, .g-toast { animation: none !important; transition: none !important; } }
+
+/* ---------- v2: brand, demo, PIN, props ---------- */
+.g-brand em, .g-ai { font-style: normal; font-size: .62em; font-weight: 850; letter-spacing: .04em; padding: 2px 6px; border-radius: 7px; background: var(--g-gold); color: #241a04; vertical-align: .3em; margin-left: 2px; }
+.g-ai { font-size: .42em; vertical-align: .55em; }
+.g-demo { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; padding: calc(8px + env(safe-area-inset-top)) 16px 8px; background: var(--g-gold); color: #241a04; font-size: 14px; }
+.g-demo a { font-weight: 850; color: #241a04; }
+.g-demo + .g-top { padding-top: 10px; }
+.g-pin { display: flex; justify-content: center; gap: 14px; margin: 6px 0; }
+.g-pin i { width: 18px; height: 18px; border-radius: 99px; border: 2.5px solid var(--g-rule); transition: background .15s, border-color .15s; }
+.g-pin i.on { background: var(--g-green); border-color: var(--g-green); }
+.g-pin-in { text-align: center; letter-spacing: .5em; }
+.g-err { color: var(--g-risk); font-weight: 750; text-align: center; }
+.g-give { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.g-give > span { font-weight: 750; font-size: 14.5px; color: var(--g-ink); }
+.g-give em { font-style: normal; color: var(--g-mute); font-weight: 650; margin-left: 4px; }
+.g-ideas button.on { background: var(--g-go); color: #fff; }
+.g-props-in { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.g-props-in li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: var(--g-bg); }
+.g-props-in li > span { font-size: 24px; }
+.g-props-in strong { display: block; color: var(--g-ink); }
+.g-props-in em { font-style: normal; font-size: 13px; color: var(--g-mute); }
