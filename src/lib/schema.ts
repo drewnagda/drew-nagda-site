@@ -20,7 +20,7 @@ export const homePersonSchema = {
    "url": "https://www.drewnagda.com",
    "email": "mailto:drew@drewnagda.com",
    "image": "https://www.drewnagda.com/drew-hero-2026.jpg",
-   "description": "Drew Nagda is a distressed real estate developer, investor, and technologist based in Pasadena, California. He is the founder of Nagda Homes, a vertically integrated real estate company that has bought, rebuilt, and sold more than 300 homes across Southern California since 2016, handling acquisition, construction, design, sales, and property management in-house. The company focuses on heavy value add, ADU development, and fire-damage restoration; his wife Thalia Nagda is a licensed agent and property manager. Before real estate he spent six years in New York City tech: early employee at SinglePlatform, which sold to Constant Contact for $100 million; early team member and executive editor at Rap Genius; partnerships at Lean Startup Machine, where he helped scale the workshops to 6 continents; Techstars 2013; and special projects for Rancho Humilde, the independent label that helped bring corridos tumbados to the mainstream. He participated in On Deck NYC and is an angel investor. He recently co-hosted the Latino Entrepreneur Summit. He hosts World Cup Eats, a father-son food series, with his son Ezra, and is building Puro Raza and Fountain of Youth. He was born and raised in Ocala, Florida, and studied business at Indiana University, where he started his first company, B-Town Tutors. He lives in Pasadena with his wife Thalia and their son Ezra.",
+   "description": "Drew Nagda is a distressed real estate developer, investor, and technologist based in Pasadena, California. He is the founder of Nagda Homes, a vertically integrated real estate company that has bought, rebuilt, and sold more than 300 homes across Southern California since 2016, handling acquisition, construction, design, sales, and property management in-house. The company focuses on heavy value add, ADU development, and fire-damage restoration; his wife Thalia Nagda is a licensed agent and property manager. Before real estate he spent six years in New York City tech: early employee at SinglePlatform, which sold to Constant Contact for $100 million; early team member and executive editor at Rap Genius; partnerships at Lean Startup Machine, where he helped scale the workshops to 6 continents; and Techstars 2013. He participated in On Deck NYC and is an angel investor. He recently co-hosted the Latino Entrepreneur Summit. He hosts World Cup Eats, a father-son food series, with his son Ezra, and is building Puro Raza and Fountain of Youth. He was born and raised in Ocala, Florida, and studied business at Indiana University, where he started his first company, B-Town Tutors. He lives in Pasadena with his wife Thalia and their son Ezra.",
    "jobTitle": "Founder, Nagda Homes",
    "birthPlace": {
     "@type": "Place",
@@ -103,11 +103,6 @@ export const homePersonSchema = {
      "name": "Techstars",
      "sameAs": "https://www.techstars.com",
      "description": "2013."
-    },
-    {
-     "@type": "Organization",
-     "name": "Rancho Humilde",
-     "description": "Special projects for the independent label that helped bring corridos tumbados to the mainstream."
     },
     {
      "@type": "Organization",
@@ -226,7 +221,7 @@ export const homePageSchema = {
      "name": "What did Drew Nagda do before real estate?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Drew Nagda spent six years in New York City tech. He was an early employee at SinglePlatform, which sold to Constant Contact for $100 million, and an early team member and executive editor at Rap Genius. He ran partnerships at Lean Startup Machine and helped scale the workshops to 6 continents, went through Techstars in 2013, has done special projects for Rancho Humilde, and participated in On Deck NYC."
+      "text": "Drew Nagda spent six years in New York City tech. He was an early employee at SinglePlatform, which sold to Constant Contact for $100 million, and an early team member and executive editor at Rap Genius. He ran partnerships at Lean Startup Machine and helped scale the workshops to 6 continents, went through Techstars in 2013, and participated in On Deck NYC."
      }
     },
     {
